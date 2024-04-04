@@ -1,0 +1,984 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UberEatsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClasificacionRestaurante">
+          <Key>
+            <PropertyRef Name="ID_ClasificacionRestaurante" />
+          </Key>
+          <Property Name="ID_ClasificacionRestaurante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Clasificacion" Type="int" />
+          <Property Name="ID_Restaurante" Type="int" />
+        </EntityType>
+        <EntityType Name="LineaDetalle">
+          <Key>
+            <PropertyRef Name="ID_LineaDetalle" />
+          </Key>
+          <Property Name="ID_LineaDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="ID_Producto" Type="int" />
+          <Property Name="ID_OrdenCompra" Type="int" />
+        </EntityType>
+        <EntityType Name="OrdenCompra">
+          <Key>
+            <PropertyRef Name="ID_OrdenCompra" />
+          </Key>
+          <Property Name="ID_OrdenCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaOrdenCompra" Type="smalldatetime" />
+          <Property Name="ID_Usuario" Type="int" />
+          <Property Name="ID_Restaurante" Type="int" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="ID_Pago" />
+          </Key>
+          <Property Name="ID_Pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaPago" Type="smalldatetime" />
+          <Property Name="MontoTotal" Type="float" />
+          <Property Name="ID_TipoMoneda" Type="int" />
+          <Property Name="ID_OrdenCompra" Type="int" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="ID_Perfil" />
+          </Key>
+          <Property Name="ID_Perfil" Type="int" Nullable="false" />
+          <Property Name="Perfil" Type="varchar" MaxLength="50" />
+          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ID_Producto" />
+          </Key>
+          <Property Name="ID_Producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="Precio" Type="int" />
+          <Property Name="TiempoPreparacion" Type="varchar" MaxLength="50" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="Impuesto" Type="int" />
+          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
+          <Property Name="ID_TipoProducto" Type="int" />
+          <Property Name="ID_Restaurante" Type="int" />
+        </EntityType>
+        <EntityType Name="Restaurante">
+          <Key>
+            <PropertyRef Name="ID_Restaurante" />
+          </Key>
+          <Property Name="ID_Restaurante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Provincia" Type="varchar" MaxLength="50" />
+          <Property Name="Canton" Type="varchar" MaxLength="50" />
+          <Property Name="Distrito" Type="varchar" MaxLength="50" />
+          <Property Name="DireccionExacta" Type="varchar" MaxLength="150" />
+          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
+          <Property Name="ID_TipoRestaurante" Type="int" />
+          <Property Name="ID_Usuario" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="ID_Tarjeta" />
+          </Key>
+          <Property Name="ID_Tarjeta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroTarjeta" Type="varchar" MaxLength="16" />
+          <Property Name="MesVencimiento" Type="varchar" MaxLength="2" />
+          <Property Name="AnnoVencimiento" Type="varchar" MaxLength="2" />
+          <Property Name="CodigoSeguridad" Type="varchar" MaxLength="10" />
+          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
+          <Property Name="ID_TipoTarjeta" Type="int" />
+          <Property Name="ID_Usuario" Type="int" />
+        </EntityType>
+        <EntityType Name="TipoMoneda">
+          <Key>
+            <PropertyRef Name="ID_TipoMoneda" />
+          </Key>
+          <Property Name="ID_TipoMoneda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoMoneda" Type="varchar" MaxLength="50" />
+          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="ID_TipoProducto" />
+          </Key>
+          <Property Name="ID_TipoProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoProducto" Type="varchar" MaxLength="50" />
+          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoRestaurante">
+          <Key>
+            <PropertyRef Name="ID_TipoRestaurante" />
+          </Key>
+          <Property Name="ID_TipoRestaurante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoRestaurante" Type="varchar" MaxLength="50" />
+          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoTarjeta">
+          <Key>
+            <PropertyRef Name="ID_TipoTarjeta" />
+          </Key>
+          <Property Name="ID_TipoTarjeta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoTarjeta" Type="varchar" MaxLength="50" />
+          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="50" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="150" />
+          <Property Name="Contrasenna" Type="nvarchar" MaxLength="50" />
+          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Perfil" Type="int" />
+        </EntityType>
+        <Association Name="FK_ClasificacionRestaurante_Restaurante">
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="0..1" />
+          <End Role="ClasificacionRestaurante" Type="Self.ClasificacionRestaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurante">
+              <PropertyRef Name="ID_Restaurante" />
+            </Principal>
+            <Dependent Role="ClasificacionRestaurante">
+              <PropertyRef Name="ID_Restaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaDetalle_OrdenCompra">
+          <End Role="OrdenCompra" Type="Self.OrdenCompra" Multiplicity="0..1" />
+          <End Role="LineaDetalle" Type="Self.LineaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenCompra">
+              <PropertyRef Name="ID_OrdenCompra" />
+            </Principal>
+            <Dependent Role="LineaDetalle">
+              <PropertyRef Name="ID_OrdenCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaDetalle_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="LineaDetalle" Type="Self.LineaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ID_Producto" />
+            </Principal>
+            <Dependent Role="LineaDetalle">
+              <PropertyRef Name="ID_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenCompra_Restaurante">
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="0..1" />
+          <End Role="OrdenCompra" Type="Self.OrdenCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurante">
+              <PropertyRef Name="ID_Restaurante" />
+            </Principal>
+            <Dependent Role="OrdenCompra">
+              <PropertyRef Name="ID_Restaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenCompra_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="OrdenCompra" Type="Self.OrdenCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="OrdenCompra">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_OrdenCompra">
+          <End Role="OrdenCompra" Type="Self.OrdenCompra" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenCompra">
+              <PropertyRef Name="ID_OrdenCompra" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="ID_OrdenCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_TipoMoneda">
+          <End Role="TipoMoneda" Type="Self.TipoMoneda" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMoneda">
+              <PropertyRef Name="ID_TipoMoneda" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="ID_TipoMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Restaurante">
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurante">
+              <PropertyRef Name="ID_Restaurante" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="ID_Restaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_TipoProducto">
+          <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="ID_TipoProducto" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="ID_TipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurante_TipoRestaurante">
+          <End Role="TipoRestaurante" Type="Self.TipoRestaurante" Multiplicity="0..1" />
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoRestaurante">
+              <PropertyRef Name="ID_TipoRestaurante" />
+            </Principal>
+            <Dependent Role="Restaurante">
+              <PropertyRef Name="ID_TipoRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurante_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Restaurante">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarjeta_TipoTarjeta">
+          <End Role="TipoTarjeta" Type="Self.TipoTarjeta" Multiplicity="0..1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTarjeta">
+              <PropertyRef Name="ID_TipoTarjeta" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="ID_TipoTarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarjeta_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Perfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="ID_Perfil" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ID_Perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UberEatsDBModelStoreContainer">
+          <EntitySet Name="ClasificacionRestaurante" EntityType="Self.ClasificacionRestaurante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LineaDetalle" EntityType="Self.LineaDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenCompra" EntityType="Self.OrdenCompra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurante" EntityType="Self.Restaurante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoMoneda" EntityType="Self.TipoMoneda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoRestaurante" EntityType="Self.TipoRestaurante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoTarjeta" EntityType="Self.TipoTarjeta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ClasificacionRestaurante_Restaurante" Association="Self.FK_ClasificacionRestaurante_Restaurante">
+            <End Role="Restaurante" EntitySet="Restaurante" />
+            <End Role="ClasificacionRestaurante" EntitySet="ClasificacionRestaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaDetalle_OrdenCompra" Association="Self.FK_LineaDetalle_OrdenCompra">
+            <End Role="OrdenCompra" EntitySet="OrdenCompra" />
+            <End Role="LineaDetalle" EntitySet="LineaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaDetalle_Producto" Association="Self.FK_LineaDetalle_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="LineaDetalle" EntitySet="LineaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenCompra_Restaurante" Association="Self.FK_OrdenCompra_Restaurante">
+            <End Role="Restaurante" EntitySet="Restaurante" />
+            <End Role="OrdenCompra" EntitySet="OrdenCompra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenCompra_Usuario" Association="Self.FK_OrdenCompra_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrdenCompra" EntitySet="OrdenCompra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_OrdenCompra" Association="Self.FK_Pago_OrdenCompra">
+            <End Role="OrdenCompra" EntitySet="OrdenCompra" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_TipoMoneda" Association="Self.FK_Pago_TipoMoneda">
+            <End Role="TipoMoneda" EntitySet="TipoMoneda" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Restaurante" Association="Self.FK_Producto_Restaurante">
+            <End Role="Restaurante" EntitySet="Restaurante" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_TipoProducto" Association="Self.FK_Producto_TipoProducto">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurante_TipoRestaurante" Association="Self.FK_Restaurante_TipoRestaurante">
+            <End Role="TipoRestaurante" EntitySet="TipoRestaurante" />
+            <End Role="Restaurante" EntitySet="Restaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurante_Usuario" Association="Self.FK_Restaurante_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Restaurante" EntitySet="Restaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarjeta_TipoTarjeta" Association="Self.FK_Tarjeta_TipoTarjeta">
+            <End Role="TipoTarjeta" EntitySet="TipoTarjeta" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarjeta_Usuario" Association="Self.FK_Tarjeta_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil" Association="Self.FK_Usuario_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UberEatsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ClasificacionRestaurante">
+          <Key>
+            <PropertyRef Name="ID_ClasificacionRestaurante" />
+          </Key>
+          <Property Name="ID_ClasificacionRestaurante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Clasificacion" Type="Int32" />
+          <Property Name="ID_Restaurante" Type="Int32" />
+          <NavigationProperty Name="Restaurante" Relationship="Self.FK_ClasificacionRestaurante_Restaurante" FromRole="ClasificacionRestaurante" ToRole="Restaurante" />
+        </EntityType>
+        <EntityType Name="LineaDetalle">
+          <Key>
+            <PropertyRef Name="ID_LineaDetalle" />
+          </Key>
+          <Property Name="ID_LineaDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="ID_Producto" Type="Int32" />
+          <Property Name="ID_OrdenCompra" Type="Int32" />
+          <NavigationProperty Name="OrdenCompra" Relationship="Self.FK_LineaDetalle_OrdenCompra" FromRole="LineaDetalle" ToRole="OrdenCompra" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_LineaDetalle_Producto" FromRole="LineaDetalle" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="OrdenCompra">
+          <Key>
+            <PropertyRef Name="ID_OrdenCompra" />
+          </Key>
+          <Property Name="ID_OrdenCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaOrdenCompra" Type="DateTime" Precision="0" />
+          <Property Name="ID_Usuario" Type="Int32" />
+          <Property Name="ID_Restaurante" Type="Int32" />
+          <NavigationProperty Name="LineaDetalle" Relationship="Self.FK_LineaDetalle_OrdenCompra" FromRole="OrdenCompra" ToRole="LineaDetalle" />
+          <NavigationProperty Name="Restaurante" Relationship="Self.FK_OrdenCompra_Restaurante" FromRole="OrdenCompra" ToRole="Restaurante" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_OrdenCompra_Usuario" FromRole="OrdenCompra" ToRole="Usuario" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_OrdenCompra" FromRole="OrdenCompra" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="ID_Pago" />
+          </Key>
+          <Property Name="ID_Pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaPago" Type="DateTime" Precision="0" />
+          <Property Name="MontoTotal" Type="Double" />
+          <Property Name="ID_TipoMoneda" Type="Int32" />
+          <Property Name="ID_OrdenCompra" Type="Int32" />
+          <NavigationProperty Name="OrdenCompra" Relationship="Self.FK_Pago_OrdenCompra" FromRole="Pago" ToRole="OrdenCompra" />
+          <NavigationProperty Name="TipoMoneda" Relationship="Self.FK_Pago_TipoMoneda" FromRole="Pago" ToRole="TipoMoneda" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="ID_Perfil" />
+          </Key>
+          <Property Name="ID_Perfil" Type="Int32" Nullable="false" />
+          <Property Name="Perfil1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Perfil" FromRole="Perfil" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ID_Producto" />
+          </Key>
+          <Property Name="ID_Producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Precio" Type="Int32" />
+          <Property Name="TiempoPreparacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Impuesto" Type="Int32" />
+          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TipoProducto" Type="Int32" />
+          <Property Name="ID_Restaurante" Type="Int32" />
+          <NavigationProperty Name="LineaDetalle" Relationship="Self.FK_LineaDetalle_Producto" FromRole="Producto" ToRole="LineaDetalle" />
+          <NavigationProperty Name="Restaurante" Relationship="Self.FK_Producto_Restaurante" FromRole="Producto" ToRole="Restaurante" />
+          <NavigationProperty Name="TipoProducto" Relationship="Self.FK_Producto_TipoProducto" FromRole="Producto" ToRole="TipoProducto" />
+        </EntityType>
+        <EntityType Name="Restaurante">
+          <Key>
+            <PropertyRef Name="ID_Restaurante" />
+          </Key>
+          <Property Name="ID_Restaurante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Canton" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Distrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DireccionExacta" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TipoRestaurante" Type="Int32" />
+          <Property Name="ID_Usuario" Type="Int32" />
+          <NavigationProperty Name="ClasificacionRestaurante" Relationship="Self.FK_ClasificacionRestaurante_Restaurante" FromRole="Restaurante" ToRole="ClasificacionRestaurante" />
+          <NavigationProperty Name="OrdenCompra" Relationship="Self.FK_OrdenCompra_Restaurante" FromRole="Restaurante" ToRole="OrdenCompra" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Restaurante" FromRole="Restaurante" ToRole="Producto" />
+          <NavigationProperty Name="TipoRestaurante" Relationship="Self.FK_Restaurante_TipoRestaurante" FromRole="Restaurante" ToRole="TipoRestaurante" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Restaurante_Usuario" FromRole="Restaurante" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="ID_Tarjeta" />
+          </Key>
+          <Property Name="ID_Tarjeta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroTarjeta" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="MesVencimiento" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="AnnoVencimiento" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoSeguridad" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TipoTarjeta" Type="Int32" />
+          <Property Name="ID_Usuario" Type="Int32" />
+          <NavigationProperty Name="TipoTarjeta" Relationship="Self.FK_Tarjeta_TipoTarjeta" FromRole="Tarjeta" ToRole="TipoTarjeta" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Tarjeta_Usuario" FromRole="Tarjeta" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="TipoMoneda">
+          <Key>
+            <PropertyRef Name="ID_TipoMoneda" />
+          </Key>
+          <Property Name="ID_TipoMoneda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoMoneda1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_TipoMoneda" FromRole="TipoMoneda" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="ID_TipoProducto" />
+          </Key>
+          <Property Name="ID_TipoProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoProducto1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_TipoProducto" FromRole="TipoProducto" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="TipoRestaurante">
+          <Key>
+            <PropertyRef Name="ID_TipoRestaurante" />
+          </Key>
+          <Property Name="ID_TipoRestaurante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoRestaurante1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Restaurante" Relationship="Self.FK_Restaurante_TipoRestaurante" FromRole="TipoRestaurante" ToRole="Restaurante" />
+        </EntityType>
+        <EntityType Name="TipoTarjeta">
+          <Key>
+            <PropertyRef Name="ID_TipoTarjeta" />
+          </Key>
+          <Property Name="ID_TipoTarjeta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoTarjeta1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.FK_Tarjeta_TipoTarjeta" FromRole="TipoTarjeta" ToRole="Tarjeta" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasenna" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Perfil" Type="Int32" />
+          <NavigationProperty Name="OrdenCompra" Relationship="Self.FK_OrdenCompra_Usuario" FromRole="Usuario" ToRole="OrdenCompra" />
+          <NavigationProperty Name="Perfil" Relationship="Self.FK_Usuario_Perfil" FromRole="Usuario" ToRole="Perfil" />
+          <NavigationProperty Name="Restaurante" Relationship="Self.FK_Restaurante_Usuario" FromRole="Usuario" ToRole="Restaurante" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.FK_Tarjeta_Usuario" FromRole="Usuario" ToRole="Tarjeta" />
+        </EntityType>
+        <Association Name="FK_ClasificacionRestaurante_Restaurante">
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="0..1" />
+          <End Role="ClasificacionRestaurante" Type="Self.ClasificacionRestaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurante">
+              <PropertyRef Name="ID_Restaurante" />
+            </Principal>
+            <Dependent Role="ClasificacionRestaurante">
+              <PropertyRef Name="ID_Restaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaDetalle_OrdenCompra">
+          <End Role="OrdenCompra" Type="Self.OrdenCompra" Multiplicity="0..1" />
+          <End Role="LineaDetalle" Type="Self.LineaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenCompra">
+              <PropertyRef Name="ID_OrdenCompra" />
+            </Principal>
+            <Dependent Role="LineaDetalle">
+              <PropertyRef Name="ID_OrdenCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaDetalle_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="LineaDetalle" Type="Self.LineaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ID_Producto" />
+            </Principal>
+            <Dependent Role="LineaDetalle">
+              <PropertyRef Name="ID_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenCompra_Restaurante">
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="0..1" />
+          <End Role="OrdenCompra" Type="Self.OrdenCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurante">
+              <PropertyRef Name="ID_Restaurante" />
+            </Principal>
+            <Dependent Role="OrdenCompra">
+              <PropertyRef Name="ID_Restaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenCompra_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="OrdenCompra" Type="Self.OrdenCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="OrdenCompra">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_OrdenCompra">
+          <End Role="OrdenCompra" Type="Self.OrdenCompra" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenCompra">
+              <PropertyRef Name="ID_OrdenCompra" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="ID_OrdenCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_TipoMoneda">
+          <End Role="TipoMoneda" Type="Self.TipoMoneda" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMoneda">
+              <PropertyRef Name="ID_TipoMoneda" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="ID_TipoMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Perfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="ID_Perfil" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ID_Perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Restaurante">
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurante">
+              <PropertyRef Name="ID_Restaurante" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="ID_Restaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_TipoProducto">
+          <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="ID_TipoProducto" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="ID_TipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurante_TipoRestaurante">
+          <End Role="TipoRestaurante" Type="Self.TipoRestaurante" Multiplicity="0..1" />
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoRestaurante">
+              <PropertyRef Name="ID_TipoRestaurante" />
+            </Principal>
+            <Dependent Role="Restaurante">
+              <PropertyRef Name="ID_TipoRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurante_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Restaurante">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarjeta_TipoTarjeta">
+          <End Role="TipoTarjeta" Type="Self.TipoTarjeta" Multiplicity="0..1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTarjeta">
+              <PropertyRef Name="ID_TipoTarjeta" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="ID_TipoTarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarjeta_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UberEatsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClasificacionRestaurante" EntityType="Self.ClasificacionRestaurante" />
+          <EntitySet Name="LineaDetalle" EntityType="Self.LineaDetalle" />
+          <EntitySet Name="OrdenCompra" EntityType="Self.OrdenCompra" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Restaurante" EntityType="Self.Restaurante" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" />
+          <EntitySet Name="TipoMoneda" EntityType="Self.TipoMoneda" />
+          <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" />
+          <EntitySet Name="TipoRestaurante" EntityType="Self.TipoRestaurante" />
+          <EntitySet Name="TipoTarjeta" EntityType="Self.TipoTarjeta" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_ClasificacionRestaurante_Restaurante" Association="Self.FK_ClasificacionRestaurante_Restaurante">
+            <End Role="Restaurante" EntitySet="Restaurante" />
+            <End Role="ClasificacionRestaurante" EntitySet="ClasificacionRestaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaDetalle_OrdenCompra" Association="Self.FK_LineaDetalle_OrdenCompra">
+            <End Role="OrdenCompra" EntitySet="OrdenCompra" />
+            <End Role="LineaDetalle" EntitySet="LineaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaDetalle_Producto" Association="Self.FK_LineaDetalle_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="LineaDetalle" EntitySet="LineaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenCompra_Restaurante" Association="Self.FK_OrdenCompra_Restaurante">
+            <End Role="Restaurante" EntitySet="Restaurante" />
+            <End Role="OrdenCompra" EntitySet="OrdenCompra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenCompra_Usuario" Association="Self.FK_OrdenCompra_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrdenCompra" EntitySet="OrdenCompra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_OrdenCompra" Association="Self.FK_Pago_OrdenCompra">
+            <End Role="OrdenCompra" EntitySet="OrdenCompra" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_TipoMoneda" Association="Self.FK_Pago_TipoMoneda">
+            <End Role="TipoMoneda" EntitySet="TipoMoneda" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil" Association="Self.FK_Usuario_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Restaurante" Association="Self.FK_Producto_Restaurante">
+            <End Role="Restaurante" EntitySet="Restaurante" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_TipoProducto" Association="Self.FK_Producto_TipoProducto">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurante_TipoRestaurante" Association="Self.FK_Restaurante_TipoRestaurante">
+            <End Role="TipoRestaurante" EntitySet="TipoRestaurante" />
+            <End Role="Restaurante" EntitySet="Restaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurante_Usuario" Association="Self.FK_Restaurante_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Restaurante" EntitySet="Restaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarjeta_TipoTarjeta" Association="Self.FK_Tarjeta_TipoTarjeta">
+            <End Role="TipoTarjeta" EntitySet="TipoTarjeta" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarjeta_Usuario" Association="Self.FK_Tarjeta_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UberEatsDBModelStoreContainer" CdmEntityContainer="UberEatsDBEntities">
+          <EntitySetMapping Name="ClasificacionRestaurante">
+            <EntityTypeMapping TypeName="UberEatsDBModel.ClasificacionRestaurante">
+              <MappingFragment StoreEntitySet="ClasificacionRestaurante">
+                <ScalarProperty Name="ID_ClasificacionRestaurante" ColumnName="ID_ClasificacionRestaurante" />
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+                <ScalarProperty Name="ID_Restaurante" ColumnName="ID_Restaurante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LineaDetalle">
+            <EntityTypeMapping TypeName="UberEatsDBModel.LineaDetalle">
+              <MappingFragment StoreEntitySet="LineaDetalle">
+                <ScalarProperty Name="ID_LineaDetalle" ColumnName="ID_LineaDetalle" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="ID_Producto" ColumnName="ID_Producto" />
+                <ScalarProperty Name="ID_OrdenCompra" ColumnName="ID_OrdenCompra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenCompra">
+            <EntityTypeMapping TypeName="UberEatsDBModel.OrdenCompra">
+              <MappingFragment StoreEntitySet="OrdenCompra">
+                <ScalarProperty Name="ID_OrdenCompra" ColumnName="ID_OrdenCompra" />
+                <ScalarProperty Name="FechaOrdenCompra" ColumnName="FechaOrdenCompra" />
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="ID_Restaurante" ColumnName="ID_Restaurante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pago">
+            <EntityTypeMapping TypeName="UberEatsDBModel.Pago">
+              <MappingFragment StoreEntitySet="Pago">
+                <ScalarProperty Name="ID_Pago" ColumnName="ID_Pago" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+                <ScalarProperty Name="MontoTotal" ColumnName="MontoTotal" />
+                <ScalarProperty Name="ID_TipoMoneda" ColumnName="ID_TipoMoneda" />
+                <ScalarProperty Name="ID_OrdenCompra" ColumnName="ID_OrdenCompra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfil">
+            <EntityTypeMapping TypeName="UberEatsDBModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="ID_Perfil" ColumnName="ID_Perfil" />
+                <ScalarProperty Name="Perfil1" ColumnName="Perfil" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="UberEatsDBModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="ID_Producto" ColumnName="ID_Producto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="TiempoPreparacion" ColumnName="TiempoPreparacion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+                <ScalarProperty Name="ID_TipoProducto" ColumnName="ID_TipoProducto" />
+                <ScalarProperty Name="ID_Restaurante" ColumnName="ID_Restaurante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurante">
+            <EntityTypeMapping TypeName="UberEatsDBModel.Restaurante">
+              <MappingFragment StoreEntitySet="Restaurante">
+                <ScalarProperty Name="ID_Restaurante" ColumnName="ID_Restaurante" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Canton" ColumnName="Canton" />
+                <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+                <ScalarProperty Name="DireccionExacta" ColumnName="DireccionExacta" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+                <ScalarProperty Name="ID_TipoRestaurante" ColumnName="ID_TipoRestaurante" />
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="UberEatsDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarjeta">
+            <EntityTypeMapping TypeName="UberEatsDBModel.Tarjeta">
+              <MappingFragment StoreEntitySet="Tarjeta">
+                <ScalarProperty Name="ID_Tarjeta" ColumnName="ID_Tarjeta" />
+                <ScalarProperty Name="NumeroTarjeta" ColumnName="NumeroTarjeta" />
+                <ScalarProperty Name="MesVencimiento" ColumnName="MesVencimiento" />
+                <ScalarProperty Name="AnnoVencimiento" ColumnName="AnnoVencimiento" />
+                <ScalarProperty Name="CodigoSeguridad" ColumnName="CodigoSeguridad" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+                <ScalarProperty Name="ID_TipoTarjeta" ColumnName="ID_TipoTarjeta" />
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMoneda">
+            <EntityTypeMapping TypeName="UberEatsDBModel.TipoMoneda">
+              <MappingFragment StoreEntitySet="TipoMoneda">
+                <ScalarProperty Name="ID_TipoMoneda" ColumnName="ID_TipoMoneda" />
+                <ScalarProperty Name="TipoMoneda1" ColumnName="TipoMoneda" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoProducto">
+            <EntityTypeMapping TypeName="UberEatsDBModel.TipoProducto">
+              <MappingFragment StoreEntitySet="TipoProducto">
+                <ScalarProperty Name="ID_TipoProducto" ColumnName="ID_TipoProducto" />
+                <ScalarProperty Name="TipoProducto1" ColumnName="TipoProducto" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoRestaurante">
+            <EntityTypeMapping TypeName="UberEatsDBModel.TipoRestaurante">
+              <MappingFragment StoreEntitySet="TipoRestaurante">
+                <ScalarProperty Name="ID_TipoRestaurante" ColumnName="ID_TipoRestaurante" />
+                <ScalarProperty Name="TipoRestaurante1" ColumnName="TipoRestaurante" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoTarjeta">
+            <EntityTypeMapping TypeName="UberEatsDBModel.TipoTarjeta">
+              <MappingFragment StoreEntitySet="TipoTarjeta">
+                <ScalarProperty Name="ID_TipoTarjeta" ColumnName="ID_TipoTarjeta" />
+                <ScalarProperty Name="TipoTarjeta1" ColumnName="TipoTarjeta" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="UberEatsDBModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Contrasenna" ColumnName="Contrasenna" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+                <ScalarProperty Name="ID_Perfil" ColumnName="ID_Perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

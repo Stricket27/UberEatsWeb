@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c7c25abf04fa4c059bccfa6c089e844a" Name="Diagram1">
+        <EntityTypeShape EntityType="UberEatsDBModel.ClasificacionRestaurante" Width="1.5" PointX="10.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.LineaDetalle" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.OrdenCompra" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Pago" Width="1.5" PointX="10.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Perfil" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Producto" Width="1.5" PointX="13.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Restaurante" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Tarjeta" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.TipoMoneda" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.TipoProducto" Width="1.5" PointX="11.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.TipoRestaurante" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.TipoTarjeta" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Usuario" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="UberEatsDBModel.FK_ClasificacionRestaurante_Restaurante" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_LineaDetalle_OrdenCompra" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_LineaDetalle_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_OrdenCompra_Restaurante" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_OrdenCompra_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_Pago_OrdenCompra" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_Pago_TipoMoneda" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_Usuario_Perfil" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_Producto_Restaurante" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_Producto_TipoProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_Restaurante_TipoRestaurante" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_Restaurante_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_Tarjeta_TipoTarjeta" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_Tarjeta_Usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
