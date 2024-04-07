@@ -173,7 +173,7 @@ namespace UberEatsWeb.Controllers
 
         //Metodo para iniciar sesión
         [HttpPost]
-        public ActionResult IniciarSesion()
+        public ActionResult IniciarSesion(Usuario pUsuario)
         {
             Usuario usuario = null;
             try
@@ -185,12 +185,12 @@ namespace UberEatsWeb.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    usuario = serviceUsuario.IniciarSesion(usuario.CorreoElectronico, usuario.Contrasenna);
+                    usuario = serviceUsuario.IniciarSesion(pUsuario.CorreoElectronico, pUsuario.Contrasenna);
                     if (usuario != null)
                     {
                         Session["Usuario"] = usuario;
                         Session["Rol"] = usuario.Perfil;
-                        Log.Info($"Inicio sesion: {usuario.CorreoElectronico}");
+                        Log.Info($"Inicio sesion: {pUsuario.CorreoElectronico}");
                         TempData["mensaje"] = Util.SweetAlertHelper.Mensaje("Bienvenido",
                             usuario.Nombre + " " + usuario.PrimerApellido, SweetAlertMessageType.success
                             );

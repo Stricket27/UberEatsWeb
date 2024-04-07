@@ -83,14 +83,14 @@ namespace Infraestructure.Repository
                 using (MyContext context = new MyContext())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
-                    usuario = (from u in context.Usuario
-                               where u.CorreoElectronico == correoElectronico && u.Contrasenna == contrasenna
-                               select u).FirstOrDefault<Usuario>();
+                    usuario = context.Usuario.
+                        Where(u => u.CorreoElectronico.Equals(correoElectronico) && u.Contrasenna == contrasenna)
+                        .FirstOrDefault<Usuario>();
                 }
                 if (usuario != null)
                 {
                     usuario = ObtenerUsuarioPorID(usuario.ID_Usuario);
-                    
+
                 }
                 return usuario;
             }
@@ -115,7 +115,7 @@ namespace Infraestructure.Repository
                 List<Perfil> listaPerfiles = null;
                 using (MyContext context = new MyContext())
                 {
-                    context.Configuration.LazyLoadingEnabled = true;
+                    context.Configuration.LazyLoadingEnabled = false;
                     listaPerfiles = context.Perfil.ToList();
                 }
                 return listaPerfiles;
