@@ -22,9 +22,13 @@ namespace UberEatsWeb
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/sweetalert").Include("~/Scripts/sweetalert.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-Darkly.min.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/sweetalert.css"
+                      ));
         }
     }
 }
