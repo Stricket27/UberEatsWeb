@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace UberEatsWeb.Utils
+namespace UberEatsWeb.Util
 {
     public class SweetAlertHelper
     {

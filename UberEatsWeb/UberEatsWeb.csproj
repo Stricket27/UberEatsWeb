@@ -287,6 +287,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -302,6 +303,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Usuario\IniciarSesionView.cshtml" />
+    <Content Include="Views\Shared\_LayoutUsuario.cshtml" />
+    <Content Include="Views\Usuario\RegistrarUsuarioView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -333,6 +336,16 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj">
+      <Project>{b7502967-ac73-46e7-b529-4dfb8c28ae52}</Project>
+      <Name>ApplicationCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infraestructure\Infraestructure.csproj">
+      <Project>{029b15fb-90e9-44f5-b3d6-20e54e810a6f}</Project>
+      <Name>Infraestructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

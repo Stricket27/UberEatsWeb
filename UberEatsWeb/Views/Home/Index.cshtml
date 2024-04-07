@@ -31,3 +31,11 @@
         </section>
     </div>
 </main>
+
+@Scripts.Render("~/bundles/sweetalert")
+@if (ViewBag.NotificationMessage != null)
+{
+    <script>
+            @Html.Raw(ViewBag.NotificationMessage)
+    </script>
+}

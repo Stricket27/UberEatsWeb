@@ -1,7 +1,28 @@
 ﻿
 @{
     ViewBag.Title = "IniciarSesionView";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
 }
 
-<h2>IniciarSesionView</h2>
+<h2>IniciarSesion</h2>
+@using (Html.BeginForm("IniciarSesion", "Usuario"))
+{
+    @Html.AntiForgeryToken()
+    <form>
+        <div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="off">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <button class="btn btn-lg btn-primary" type="submit">Ingresar</button>
+            <a href="@Url.Action("RegistrarUsuarioView", "Usuario")" class="btn btn-lg btn-secondary">Crear una cuenta</a>
+        </div>
+    </form>
+}
+
+
 
