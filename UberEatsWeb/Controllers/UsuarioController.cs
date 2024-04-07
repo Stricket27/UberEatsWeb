@@ -40,7 +40,7 @@ namespace UberEatsWeb.Controllers
             return View(listaUsuarios);
         }
 
-        //Carga de datos cuando el usuario se va a registrar
+        //Carga de datos cuando el usuario se va a registrar=
         public ActionResult RegistrarUsuarioView()
         {
             List<SelectListItem> listaEstado = new List<SelectListItem>();
