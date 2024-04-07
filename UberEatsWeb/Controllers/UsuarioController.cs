@@ -17,7 +17,7 @@ namespace UberEatsWeb.Controllers
     public class UsuarioController : Controller
     {
         IServiceUsuario serviceUsuario = new ServiceUsuario();
-        // Se va a mostrar la lista de todos los Usuario, este metodo esta por defaul y es mejor no cambiar el nombre de Index
+        // Se va a mostrar la lista de todos los Usuario, este metodo esta por default y es mejor no cambiar el nombre de Index
         public ActionResult Index()
         {
             IEnumerable<Usuario> listaUsuarios = null;
@@ -47,11 +47,12 @@ namespace UberEatsWeb.Controllers
             listaEstado.Add(new SelectListItem() { Text = "Activo", Value = "Activo" });
             ViewBag.ListaEstado = listaEstado;
 
-            //ViewBag.Perfiles = Perfil().Select(x => new SelectListItem
-            //{
-            //    Text = x.Perfil1.ToString(),
-            //    Value = x.ID_Perfil.ToString()
-            //}).ToList();
+            ViewBag.Perfil = Perfil().Select(x => new SelectListItem
+            {
+                Text = x.Perfil1.ToString(),
+                Value = x.ID_Perfil.ToString()
+            }).ToList();
+
             return View();
         }
 

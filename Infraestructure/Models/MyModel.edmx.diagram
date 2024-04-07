@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c7c25abf04fa4c059bccfa6c089e844a" Name="Diagram1">
+      <Diagram DiagramId="ce5966919e154035b4facd081c061b73" Name="Diagram1">
         <EntityTypeShape EntityType="UberEatsDBModel.ClasificacionRestaurante" Width="1.5" PointX="10.5" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="UberEatsDBModel.LineaDetalle" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UberEatsDBModel.OrdenCompra" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />

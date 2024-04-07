@@ -112,13 +112,13 @@ namespace Infraestructure.Repository
         {
             try
             {
-                List<Perfil> listaPerfil = null;
+                List<Perfil> listaPerfiles = null;
                 using (MyContext context = new MyContext())
                 {
-                    context.Configuration.LazyLoadingEnabled = false;
-                    listaPerfil = context.Perfil.ToList();
+                    context.Configuration.LazyLoadingEnabled = true;
+                    listaPerfiles = context.Perfil.ToList();
                 }
-                return listaPerfil;
+                return listaPerfiles;
             }
             catch (DbUpdateException dbEx)
             {
