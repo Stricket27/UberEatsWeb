@@ -28,6 +28,7 @@ namespace Infraestructure.Models
         public string Canton { get; set; }
         public string Distrito { get; set; }
         public string DireccionExacta { get; set; }
+        public byte[] Fotografia { get; set; }
         public string EstadoActual { get; set; }
         public Nullable<int> ID_TipoRestaurante { get; set; }
         public Nullable<int> ID_Usuario { get; set; }

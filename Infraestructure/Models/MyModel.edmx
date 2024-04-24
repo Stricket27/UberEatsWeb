@@ -59,6 +59,7 @@
           <Property Name="TiempoPreparacion" Type="varchar" MaxLength="50" />
           <Property Name="Cantidad" Type="int" />
           <Property Name="Impuesto" Type="int" />
+          <Property Name="Fotografia" Type="varbinary(max)" />
           <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
           <Property Name="ID_TipoProducto" Type="int" />
           <Property Name="ID_Restaurante" Type="int" />
@@ -73,6 +74,7 @@
           <Property Name="Canton" Type="varchar" MaxLength="50" />
           <Property Name="Distrito" Type="varchar" MaxLength="50" />
           <Property Name="DireccionExacta" Type="varchar" MaxLength="150" />
+          <Property Name="Fotografia" Type="varbinary(max)" />
           <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
           <Property Name="ID_TipoRestaurante" Type="int" />
           <Property Name="ID_Usuario" Type="int" />
@@ -454,6 +456,7 @@
           <Property Name="TiempoPreparacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Cantidad" Type="Int32" />
           <Property Name="Impuesto" Type="Int32" />
+          <Property Name="Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_TipoProducto" Type="Int32" />
           <Property Name="ID_Restaurante" Type="Int32" />
@@ -471,6 +474,7 @@
           <Property Name="Canton" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Distrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DireccionExacta" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_TipoRestaurante" Type="Int32" />
           <Property Name="ID_Usuario" Type="Int32" />
@@ -862,6 +866,7 @@
                 <ScalarProperty Name="TiempoPreparacion" ColumnName="TiempoPreparacion" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
                 <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
                 <ScalarProperty Name="ID_TipoProducto" ColumnName="ID_TipoProducto" />
                 <ScalarProperty Name="ID_Restaurante" ColumnName="ID_Restaurante" />
@@ -877,6 +882,7 @@
                 <ScalarProperty Name="Canton" ColumnName="Canton" />
                 <ScalarProperty Name="Distrito" ColumnName="Distrito" />
                 <ScalarProperty Name="DireccionExacta" ColumnName="DireccionExacta" />
+                <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
                 <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
                 <ScalarProperty Name="ID_TipoRestaurante" ColumnName="ID_TipoRestaurante" />
                 <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />

@@ -26,6 +26,7 @@ namespace Infraestructure.Models
         public string TiempoPreparacion { get; set; }
         public Nullable<int> Cantidad { get; set; }
         public Nullable<int> Impuesto { get; set; }
+        public byte[] Fotografia { get; set; }
         public string EstadoActual { get; set; }
         public Nullable<int> ID_TipoProducto { get; set; }
         public Nullable<int> ID_Restaurante { get; set; }
