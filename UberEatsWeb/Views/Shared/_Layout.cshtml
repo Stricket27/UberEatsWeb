@@ -8,62 +8,11 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @if (Session["Usuario"] == null)
-    {
-        <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
-            <div class="container-fluid">
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarColor03">
-                    <ul class="navbar-nav me-auto">
-
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
-                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
-                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
-                    </ul>
-                    <form class="d-flex">
-                        <div class="dropdown">
-                            @{
-                                string nombreUsuario = "Mi cuenta de usuario";
-                                string correoElectronico = "";
-
-                                if (Session["Usuario"] != null)
-                                {
-                                    Infraestructure.Models.Usuario usuario = new Infraestructure.Models.Usuario();
-                                    usuario = (Infraestructure.Models.Usuario)Session["Usuario"];
-                                    nombreUsuario = $"{usuario.Nombre} {usuario.PrimerApellido}";
-                                    correoElectronico = usuario.CorreoElectronico;
-                                }
-
-                            }
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-regular fa-user"></i> @nombreUsuario
-                            </button>
-                            <ul class="dropdown-menu">
-                                @if (Session["Usuario"] != null)
-                                {
-                                    <li><a class="dropdown-item" href="#">@correoElectronico</a></li>
-                                }
-                                @if (Session["Usuario"] == null)
-                                {
-                                    <li><a class="dropdown-item" href="@Url.Action("IniciarSesionView","Usuario")">Iniciar Sesión</a></li>
-                                }
-                                else
-                                {
-                                    <li><a class="dropdown-item" href="@Url.Action("CerrarSesion","Usuario")">Cerrar Sesión</a></li>
-                                }
-                            </ul>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </nav>
+    @{ 
+        Layout = ("~/Views/Shared/_LayoutCliente.cshtml");
     }
+        
+
 
     <div class="container body-content">
         @RenderBody()
