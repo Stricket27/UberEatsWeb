@@ -13,7 +13,7 @@ namespace Infraestructure.Repository
     public class RepositoryRestaurante : IRepositoryRestaurante
     {
         public IEnumerable<Restaurante> ListaRestaurantes()
-        {
+        { 
             try
             {
                 IEnumerable<Restaurante> listaRestaurante = null;
