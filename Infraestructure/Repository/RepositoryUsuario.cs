@@ -75,7 +75,7 @@ namespace Infraestructure.Repository
             }
         }
 
-        public Usuario IniciarSesion(string correoElectronico, string contrasenna)
+        public Usuario IniciarSesion(string correoElectronico, string nombreUsuario, string contrasenna)
         {
             Usuario usuario = null;
             try
@@ -84,7 +84,7 @@ namespace Infraestructure.Repository
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     usuario = context.Usuario.
-                        Where(u => u.CorreoElectronico.Equals(correoElectronico) && u.Contrasenna == contrasenna)
+                        Where(u => u.CorreoElectronico.Equals(correoElectronico) || (u.NombreUsuario.Equals(nombreUsuario) && u.Contrasenna == contrasenna))
                         .FirstOrDefault<Usuario>();
                 }
                 if (usuario != null)

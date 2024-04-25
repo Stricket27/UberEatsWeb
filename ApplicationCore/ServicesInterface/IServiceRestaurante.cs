@@ -14,5 +14,7 @@ namespace ApplicationCore.ServicesInterface
         void AgregarRestaurante(Restaurante restaurante);
         Restaurante EditarRestaurante(Restaurante restaurante);
         void CambiarEstado(int id);
+        List<TipoRestaurante> TipoRestaurantes();
+        Usuario ObtenerUsuarioPorID(int id);
     }
 }

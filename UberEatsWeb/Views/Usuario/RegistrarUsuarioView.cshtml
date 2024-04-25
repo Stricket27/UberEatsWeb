@@ -39,9 +39,15 @@
                     @Html.ValidationMessageFor(model => model.CorreoElectronico, "", new { @class = "text-danger" })
                 </div>
 
+                <label class="control-label col-md-2">Nombre de usuario</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NombreUsuario, new { htmlAttributes = new { @class = "form-control", @placeholder = "JuanPP@gmail.com" } })
+                    @Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
+                </div>
+
                 <label class="control-label col-md-2">Contraseña</label>
                 <div class="col-md-10">
-                    @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @placeholder = "Prueba" } )
+                    @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @placeholder = "Prueba" })
                     @Html.ValidationMessageFor(model => model.Contrasenna, "", new { @class = "text-danger" })
 
                 </div>

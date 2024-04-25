@@ -37,5 +37,15 @@ namespace ApplicationCore.Services
         {
             return repository.ObtenerRestaurantePorID(id);
         }
+
+        public Usuario ObtenerUsuarioPorID(int id)
+        {
+            return repository.ObtenerUsuarioPorID(id);
+        }
+
+        public List<TipoRestaurante> TipoRestaurantes()
+        {
+            return repository.TipoRestaurantes();
+        }
     }
 }

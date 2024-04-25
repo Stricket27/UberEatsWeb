@@ -17,6 +17,7 @@ namespace Infraestructure.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
+            this.Direccion = new HashSet<Direccion>();
             this.OrdenCompra = new HashSet<OrdenCompra>();
             this.Restaurante = new HashSet<Restaurante>();
             this.Tarjeta = new HashSet<Tarjeta>();
@@ -27,10 +28,13 @@ namespace Infraestructure.Models
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
         public string CorreoElectronico { get; set; }
+        public string NombreUsuario { get; set; }
         public string Contrasenna { get; set; }
         public string EstadoActual { get; set; }
         public Nullable<int> ID_Perfil { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Direccion> Direccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdenCompra> OrdenCompra { get; set; }
         public virtual Perfil Perfil { get; set; }

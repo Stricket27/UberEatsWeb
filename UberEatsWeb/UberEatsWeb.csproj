@@ -241,6 +241,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RestauranteController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -310,6 +311,8 @@
     <Content Include="Views\Shared\_LayoutAdminGerente.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\AgregarUsuarioView.cshtml" />
+    <Content Include="Views\Restaurante\AgregarRestauranteView.cshtml" />
+    <Content Include="Views\Restaurante\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

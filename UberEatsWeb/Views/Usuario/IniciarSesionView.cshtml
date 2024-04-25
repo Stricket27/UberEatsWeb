@@ -14,6 +14,12 @@
                 @Html.EditorFor(model => model.CorreoElectronico, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
                 <label for="floatingInput">Correo electrónico</label>
             </div>
+
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.NombreUsuario, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
+                <label for="floatingInput">Nombre de usuario</label>
+            </div>
+
             <div class="form-floating">
                 @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @id = "floatingPassword", @placeholder = "Password" })
                 <label for="floatingPassword">Contraseña</label>

@@ -26,6 +26,7 @@ namespace Infraestructure.Models
         }
     
         public virtual DbSet<ClasificacionRestaurante> ClasificacionRestaurante { get; set; }
+        public virtual DbSet<Direccion> Direccion { get; set; }
         public virtual DbSet<LineaDetalle> LineaDetalle { get; set; }
         public virtual DbSet<OrdenCompra> OrdenCompra { get; set; }
         public virtual DbSet<Pago> Pago { get; set; }

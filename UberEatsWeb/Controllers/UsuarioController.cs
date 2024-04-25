@@ -186,7 +186,7 @@ namespace UberEatsWeb.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    usuario = serviceUsuario.IniciarSesion(pUsuario.CorreoElectronico, pUsuario.Contrasenna);
+                    usuario = serviceUsuario.IniciarSesion(pUsuario.CorreoElectronico, pUsuario.NombreUsuario, pUsuario.Contrasenna);
                     if (usuario != null)
                     {
                         Session["Usuario"] = usuario;

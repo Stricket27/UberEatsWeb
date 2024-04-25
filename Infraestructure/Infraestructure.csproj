@@ -185,6 +185,9 @@
     <Compile Include="Models\ClasificacionRestaurante.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Direccion.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LineaDetalle.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>

@@ -13,7 +13,7 @@ namespace Infraestructure.Repository
     public class RepositoryRestaurante : IRepositoryRestaurante
     {
         public IEnumerable<Restaurante> ListaRestaurantes()
-        { 
+        {
             try
             {
                 IEnumerable<Restaurante> listaRestaurante = null;
@@ -45,6 +45,7 @@ namespace Infraestructure.Repository
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     context.Restaurante.Add(restaurante);
+                    context.SaveChanges();
                 }
             }
             catch (DbUpdateException dbEx)
@@ -145,6 +146,58 @@ namespace Infraestructure.Repository
                     restaurante = context.Restaurante.Find(id);
                 }
                 return restaurante;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
+        public List<TipoRestaurante> TipoRestaurantes()
+        {
+            try
+            {
+                List<TipoRestaurante> listaTipoRestaurante = null;
+                using (MyContext context = new MyContext())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    listaTipoRestaurante = context.TipoRestaurante.ToList();
+                }
+                return listaTipoRestaurante;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
+        public Usuario ObtenerUsuarioPorID(int id)
+        {
+            try
+            {
+                Usuario usuario = null;
+                using (MyContext context = new MyContext())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    usuario = context.Usuario.Find(id);
+                }
+                return usuario;
             }
             catch (DbUpdateException dbEx)
             {
