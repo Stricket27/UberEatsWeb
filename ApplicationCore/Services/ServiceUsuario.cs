@@ -14,12 +14,12 @@ namespace ApplicationCore.Services
     public class ServiceUsuario : IServiceUsuario
     {
         IRepositoryUsuario repositoryUsuario = new RepositoryUsuario();
-        public void Agregar(Usuario usuario)
+        public void AgregarUsuario(Usuario usuario)
         {
             string encriptarContrasenna = Cryptography.EncrypthAES(usuario.Contrasenna);
             usuario.Contrasenna = encriptarContrasenna;
 
-            repositoryUsuario.Agregar(usuario);
+            repositoryUsuario.AgregarUsuario(usuario);
         }
 
         public void CambiarEstado(int id)

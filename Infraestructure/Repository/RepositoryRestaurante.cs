@@ -10,19 +10,77 @@ using System.Threading.Tasks;
 
 namespace Infraestructure.Repository
 {
-    public class RepositoryUsuario : IRepositoryUsuario
+    public class RepositoryRestaurante : IRepositoryRestaurante
     {
-        public void AgregarUsuario(Usuario usuario)
+        public IEnumerable<Restaurante> ListaRestaurantes()
+        {
+            try
+            {
+                IEnumerable<Restaurante> listaRestaurante = null;
+                using (MyContext context = new MyContext())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    listaRestaurante = context.Restaurante.ToList();
+                }
+                return listaRestaurante;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+        public void AgregarRestaurante(Restaurante restaurante)
         {
             try
             {
                 using (MyContext context = new MyContext())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
-                    usuario.CorreoElectronico.ToLower();
-                    context.Usuario.Add(usuario);
-                    context.SaveChanges();
+                    context.Restaurante.Add(restaurante);
                 }
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+        public Restaurante EditarRestaurante(Restaurante restaurante)
+        {
+            int retorno = 0;
+            Restaurante restaurante1 = null;
+            try
+            {
+                using (MyContext context = new MyContext())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    restaurante1 = ObtenerRestaurantePorID(restaurante.ID_Restaurante);
+
+                    context.Restaurante.Add(restaurante);
+                    context.Entry(restaurante).State = System.Data.Entity.EntityState.Modified;
+
+                    retorno = context.SaveChanges();
+                }
+                if (retorno >= 0)
+                {
+                    restaurante1 = ObtenerRestaurantePorID(restaurante.ID_Restaurante);
+                }
+                return restaurante1;
             }
             catch (DbUpdateException dbEx)
             {
@@ -44,20 +102,22 @@ namespace Infraestructure.Repository
             {
                 using (MyContext context = new MyContext())
                 {
-                    Usuario usuario = (from u in context.Usuario
-                                       where u.ID_Usuario == id
-                                       select u).FirstOrDefault();
+                    context.Configuration.LazyLoadingEnabled = false;
 
-                    if (usuario.EstadoActual == "Activo")
+                    Restaurante restaurante = (from r in context.Restaurante
+                                               where r.ID_Restaurante == id
+                                               select r).FirstOrDefault();
+
+                    if (restaurante.EstadoActual == "Activo")
                     {
-                        usuario.EstadoActual = "Inactivo";
+                        restaurante.EstadoActual = "Inactivo";
                     }
-                    else
+                    else if (restaurante.EstadoActual == "Activo")
                     {
-                        usuario.EstadoActual = "Activo";
+                        restaurante.EstadoActual = "Activo";
                     }
 
-                    context.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
+                    context.Entry(restaurante).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
                 }
             }
@@ -74,130 +134,17 @@ namespace Infraestructure.Repository
                 throw;
             }
         }
-
-        public Usuario IniciarSesion(string correoElectronico, string contrasenna)
+        public Restaurante ObtenerRestaurantePorID(int id)
         {
-            Usuario usuario = null;
             try
             {
+                Restaurante restaurante = null;
                 using (MyContext context = new MyContext())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
-                    usuario = context.Usuario.
-                        Where(u => u.CorreoElectronico.Equals(correoElectronico) && u.Contrasenna == contrasenna)
-                        .FirstOrDefault<Usuario>();
+                    restaurante = context.Restaurante.Find(id);
                 }
-                if (usuario != null)
-                {
-                    usuario = ObtenerUsuarioPorID(usuario.ID_Usuario);
-
-                }
-                return usuario;
-            }
-            catch (DbUpdateException dbEx)
-            {
-                string mensaje = "";
-                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
-                throw new Exception(mensaje);
-            }
-            catch (Exception ex)
-            {
-                string mensaje = "";
-                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
-                throw;
-            }
-        }
-
-        public List<Perfil> ListaPerfiles()
-        {
-            try
-            {
-                List<Perfil> listaPerfiles = null;
-                using (MyContext context = new MyContext())
-                {
-                    context.Configuration.LazyLoadingEnabled = false;
-                    listaPerfiles = context.Perfil.ToList();
-                }
-                return listaPerfiles;
-            }
-            catch (DbUpdateException dbEx)
-            {
-                string mensaje = "";
-                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
-                throw new Exception(mensaje);
-            }
-            catch (Exception ex)
-            {
-                string mensaje = "";
-                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
-                throw;
-            }
-        }
-
-        public IEnumerable<Usuario> ListaUsuarios()
-        {
-            try
-            {
-                IEnumerable<Usuario> listaUsuario = null;
-                using (MyContext context = new MyContext())
-                {
-                    context.Configuration.LazyLoadingEnabled = false;
-                    listaUsuario = context.Usuario.ToList();
-                }
-                return listaUsuario;
-            }
-            catch (DbUpdateException dbEx)
-            {
-                string mensaje = "";
-                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
-                throw new Exception(mensaje);
-            }
-            catch (Exception ex)
-            {
-                string mensaje = "";
-                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
-                throw;
-            }
-        }
-
-        public Usuario ObtenerUsuarioPorCorreo(string correoElectronico)
-        {
-            try
-            {
-                Usuario usuario = null;
-                using (MyContext context = new MyContext())
-                {
-                    usuario = (from u in context.Usuario
-                               where u.CorreoElectronico == correoElectronico
-                               select u).FirstOrDefault();
-                }
-                return usuario;
-            }
-            catch (DbUpdateException dbEx)
-            {
-                string mensaje = "";
-                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
-                throw new Exception(mensaje);
-            }
-            catch (Exception ex)
-            {
-                string mensaje = "";
-                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
-                throw;
-            }
-        }
-
-        public Usuario ObtenerUsuarioPorID(int id)
-        {
-            try
-            {
-                Usuario usuario = null;
-                using (MyContext context = new MyContext())
-                {
-                    context.Configuration.LazyLoadingEnabled = false;
-                    usuario = context.Usuario.Find(id);
-                }
-                return usuario;
+                return restaurante;
             }
             catch (DbUpdateException dbEx)
             {

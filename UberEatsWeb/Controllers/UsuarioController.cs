@@ -71,7 +71,7 @@ namespace UberEatsWeb.Controllers
                 }
                 else
                 {
-                    serviceUsuario.Agregar(usuario);
+                    serviceUsuario.AgregarUsuario(usuario);
                 }
 
             }
@@ -118,7 +118,7 @@ namespace UberEatsWeb.Controllers
                 }
                 else
                 {
-                    serviceUsuario.Agregar(usuario);
+                    serviceUsuario.AgregarUsuario(usuario);
                 }
 
             }
