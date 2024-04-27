@@ -11,10 +11,11 @@ namespace Infraestructure.RepositoryInterface
     {
         IEnumerable<Restaurante> ListaRestaurantes();
         Restaurante ObtenerRestaurantePorID(int id);
+        Usuario ObtenerUsuarioPorID(int id);
         void AgregarRestaurante(Restaurante restaurante);
         Restaurante EditarRestaurante(Restaurante restaurante);
         void CambiarEstado(int id);
         List<TipoRestaurante> TipoRestaurantes();
-        Usuario ObtenerUsuarioPorID(int id);
+        
     }
 }

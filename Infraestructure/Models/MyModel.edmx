@@ -68,8 +68,6 @@
           <Property Name="ID_Producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" />
           <Property Name="Precio" Type="int" />
-          <Property Name="TiempoPreparacion" Type="varchar" MaxLength="50" />
-          <Property Name="Impuesto" Type="int" />
           <Property Name="Fotografia" Type="varbinary(max)" />
           <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
           <Property Name="ID_TipoProducto" Type="int" />
@@ -495,8 +493,6 @@
           <Property Name="ID_Producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Precio" Type="Int32" />
-          <Property Name="TiempoPreparacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Impuesto" Type="Int32" />
           <Property Name="Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_TipoProducto" Type="Int32" />
@@ -936,8 +932,6 @@
                 <ScalarProperty Name="ID_Producto" ColumnName="ID_Producto" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="TiempoPreparacion" ColumnName="TiempoPreparacion" />
-                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
                 <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
                 <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
                 <ScalarProperty Name="ID_TipoProducto" ColumnName="ID_TipoProducto" />
