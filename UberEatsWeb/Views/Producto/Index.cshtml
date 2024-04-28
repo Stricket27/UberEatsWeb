@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Infraestructure.Models.Producto>
+
+<p>
+    @Html.ActionLink("Crear nuevo producto", "AgregarProductoView")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fotografia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoActual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Restaurante.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoProducto.TipoProducto1)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @if (item.Fotografia != null)
+                {
+                    <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(item.Fotografia)" width="100" style="margin-top: 20px" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoActual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restaurante.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoProducto.TipoProducto1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Producto }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Producto }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Producto })
+            </td>
+        </tr>
+    }
+
+</table>

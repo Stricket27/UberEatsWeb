@@ -152,7 +152,6 @@
           <Property Name="PrimerApellido" Type="varchar" MaxLength="50" />
           <Property Name="SegundoApellido" Type="varchar" MaxLength="50" />
           <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="150" />
-          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" />
           <Property Name="Contrasenna" Type="nvarchar" MaxLength="50" />
           <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
           <Property Name="ID_Perfil" Type="int" />
@@ -591,7 +590,6 @@
           <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CorreoElectronico" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Contrasenna" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_Perfil" Type="Int32" />
@@ -1024,7 +1022,6 @@
                 <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
                 <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
                 <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
                 <ScalarProperty Name="Contrasenna" ColumnName="Contrasenna" />
                 <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
                 <ScalarProperty Name="ID_Perfil" ColumnName="ID_Perfil" />

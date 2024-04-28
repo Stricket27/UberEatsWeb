@@ -186,7 +186,7 @@ namespace UberEatsWeb.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    usuario = serviceUsuario.IniciarSesion(pUsuario.CorreoElectronico, pUsuario.NombreUsuario, pUsuario.Contrasenna);
+                    usuario = serviceUsuario.IniciarSesion(pUsuario.CorreoElectronico, pUsuario.Contrasenna);
                     if (usuario != null)
                     {
                         Session["Usuario"] = usuario;
@@ -237,12 +237,5 @@ namespace UberEatsWeb.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
-
-
-
-
-
-
-
     }
 }

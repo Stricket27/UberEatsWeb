@@ -1,54 +1,63 @@
 ﻿
 <body>
-    <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-success-subtle">
         <div class="container-fluid">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @*<img class="navbar-brand" src="~/Content/themes/base/images/Logo solo.png" width="35pc" style="margin-left: 20px" />*@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav me-auto">
-
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
-                    <li>@Html.ActionLink("Usuarios", "Index", "Usuario", new { area = "" }, new { @class = "nav-link" })</li>
-
-                    <li>@Html.ActionLink("Restaurantes", "Index", "Restaurante", new { area = "" }, new { @class = "nav-link" })</li>
+                <ul class="navbar-nav me-auto" style="margin-left: 20px">
+                    <li class="nav-item">
+                        @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Sobre nosotros", "About", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contactos", "Contact", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Usuarios", "Index", "Usuario", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Restaurantes", "Index", "Restaurante", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Productos", "Index", "Producto", null, new { @class = "nav-link" })
+                    </li>
                 </ul>
                 <form class="d-flex">
-                    <div class="dropdown">
+                    <div class="dropdown-center">
                         @{
-                            string nombreUsuario = "Mi cuenta de usuario";
-                            string correoElectronico = "";
+                            String nombreUsuario = " Mi cuenta";
+                            String correoUsuario = "";
 
                             if (Session["Usuario"] != null)
                             {
                                 Infraestructure.Models.Usuario usuario = new Infraestructure.Models.Usuario();
                                 usuario = (Infraestructure.Models.Usuario)Session["Usuario"];
-                                nombreUsuario = $"{usuario.Nombre} {usuario.PrimerApellido}";
-                                correoElectronico = usuario.CorreoElectronico;
+                                nombreUsuario = $"{usuario.Nombre} {usuario.PrimerApellido} {usuario.SegundoApellido}";
+                                correoUsuario = usuario.CorreoElectronico;
                             }
-
                         }
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 5pc;">
                             <i class="fa-regular fa-user"></i> @nombreUsuario
                         </button>
                         <ul class="dropdown-menu">
                             @if (Session["Usuario"] != null)
                             {
-                                <li><a class="dropdown-item" href="#">@correoElectronico</a></li>
+                                <li><a class="dropdown-item">@correoUsuario</a></li>
                             }
+
                             @if (Session["Usuario"] == null)
                             {
-                                <li><a class="dropdown-item" href="@Url.Action("IniciarSesionView","Usuario")">Iniciar Sesión</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("IniciarSesionView","Usuario")"><i class="fa-solid fa-circle-arrow-right"></i> Iniciar sesión</a></li>
                             }
                             else
                             {
-                                <li><a class="dropdown-item" href="@Url.Action("CerrarSesion","Usuario")">Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("CerrarSesion","Usuario")"><i class="fa-solid fa-circle-arrow-left"></i> Cerrar sesión</a></li>
                             }
                         </ul>
                     </div>

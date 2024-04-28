@@ -1,30 +1,33 @@
 ﻿@model IEnumerable<Infraestructure.Models.Usuario>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <p>
-    @Html.ActionLink("Agregar un nuevo usuario", "AgregarUsuarioView")
+    <a href="@Url.Action("AgregarUsuarioView", "Usuario")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nuevo usuario</a>
 </p>
 
-<!-- Modal -->
-
-<table class="table">
+<table class="table" style="text-align: center">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PrimerApellido)
+            Primer apellido
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SegundoApellido)
+            Segundo apellido
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CorreoElectronico)
+            Correo electrónico
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EstadoActual)
+            Estado actual
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Perfil.Perfil1)
+            Perfil
+        </th>
+        <th>
+            Acciones
         </th>
         <th></th>
     </tr>
@@ -45,15 +48,20 @@
                 @Html.DisplayFor(modelItem => item.CorreoElectronico)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EstadoActual)
+                @if (item.EstadoActual == "Activo")
+                {
+                    <a href="@Url.Action("CambiarEstado", "Usuario", new {id = item.ID_Usuario})" class="btn btn-success"><i class="fa-regular fa-user"></i></a>
+                }
+                else
+                {
+                    <a href="@Url.Action("CambiarEstado", "Usuario", new {id = item.ID_Usuario})" class="btn btn-danger"><i class="fa-regular fa-user"></i></a>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Perfil.Perfil1)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Usuario }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID_Usuario }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Usuario })
+                <a href="@Url.Action("AgregarUsuarioView", "Usuario")" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
             </td>
         </tr>
     }

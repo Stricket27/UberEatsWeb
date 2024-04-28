@@ -1,6 +1,6 @@
 ﻿@model Infraestructure.Models.Usuario
 @{
-    ViewBag.Title = "RegistrarUsuarioView";
+    ViewBag.Title = "AgregarUsuarioView";
     List<SelectListItem> perfil = ViewBag.Perfil ?? new List<SelectListItem>();
     List<SelectListItem> estadoActual = ViewBag.ListaEstado;
 }
@@ -40,7 +40,7 @@
 
                 <label class="control-label col-md-2">Contraseña</label>
                 <div class="col-md-10">
-                    @Html.PasswordFor(model => model.Contrasenna,  new { @class = "form-control", @placeholder = "Prueba" } )
+                    @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @placeholder = "Prueba" })
                     @Html.ValidationMessageFor(model => model.Contrasenna, "", new { @class = "text-danger" })
 
                 </div>

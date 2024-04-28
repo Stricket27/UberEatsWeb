@@ -27,10 +27,10 @@ namespace ApplicationCore.Services
             repositoryUsuario.CambiarEstado(id);
         }
 
-        public Usuario IniciarSesion(string correoElectronico, string nombreUsuario, string contrasenna)
+        public Usuario IniciarSesion(string correoElectronico, string contrasenna)
         {
             string desencriptarContrasenna = Cryptography.EncrypthAES(contrasenna);
-            return repositoryUsuario.IniciarSesion(correoElectronico, nombreUsuario, desencriptarContrasenna);
+            return repositoryUsuario.IniciarSesion(correoElectronico, desencriptarContrasenna);
         }
 
         public List<Perfil> ListaPerfiles()

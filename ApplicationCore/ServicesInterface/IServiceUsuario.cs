@@ -14,7 +14,7 @@ namespace ApplicationCore.ServicesInterface
         void AgregarUsuario(Usuario usuario);
         void CambiarEstado(int id);
         List<Perfil> ListaPerfiles();
-        Usuario IniciarSesion(string correoElectronico, string nombreUsuario, string contrasenna);
+        Usuario IniciarSesion(string correoElectronico, string contrasenna);
         Usuario ObtenerUsuarioPorCorreo(string correoElectronico);
     }
 }

@@ -28,7 +28,6 @@ namespace Infraestructure.Models
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
         public string CorreoElectronico { get; set; }
-        public string NombreUsuario { get; set; }
         public string Contrasenna { get; set; }
         public string EstadoActual { get; set; }
         public Nullable<int> ID_Perfil { get; set; }
