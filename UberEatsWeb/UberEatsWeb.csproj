@@ -269,6 +269,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\EstiloNavbarAdminGerente.css" />
     <Content Include="Content\sweetalert.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

@@ -57,9 +57,25 @@
                     <a href="@Url.Action("CambiarEstado", "Usuario", new {id = item.ID_Usuario})" class="btn btn-danger"><i class="fa-regular fa-user"></i></a>
                 }
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Perfil.Perfil1)
-            </td>
+            @if (item.ID_Perfil == 1)
+            {
+                <td>
+                    Administrador
+                </td>
+            }
+            else if (item.ID_Perfil == 2)
+            {
+                <td>
+                    Gerente
+                </td>
+            }
+            else
+            {
+                <td>
+                    Cliente
+                </td>
+            }
+
             <td>
                 <a href="@Url.Action("AgregarUsuarioView", "Usuario")" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
             </td>

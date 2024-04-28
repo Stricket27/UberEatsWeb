@@ -8,11 +8,13 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @{ 
+    @if (Session["Usuario"] == null || (Session["Usuario"] != null && Convert.ToInt32(Session["Rol"]) == 2)){
         Layout = ("~/Views/Shared/_LayoutCliente.cshtml");
     }
-        
-
+    else
+    {
+        Layout = ("~/Views/Shared/_LayoutAdminGerente.cshtml");
+    }
 
     <div class="container body-content">
         @RenderBody()
