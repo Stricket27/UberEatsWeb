@@ -25,7 +25,7 @@ namespace UberEatsWeb
             bundles.Add(new ScriptBundle("~/bundles/sweetalert").Include("~/Scripts/sweetalert.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-Lume.min.css",
+                      //"~/Content/bootstrap-Lume.min.css",
                       "~/Content/site.css",
                       "~/Content/sweetalert.css"
                       ));

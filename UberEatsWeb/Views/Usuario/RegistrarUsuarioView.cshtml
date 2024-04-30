@@ -3,74 +3,99 @@
     ViewBag.Title = "RegistrarUsuarioView";
     Layout = "~/Views/Shared/_LayoutSinNavbar.cshtml";
     List<SelectListItem> perfil = ViewBag.Perfil ?? new List<SelectListItem>();
-    List<SelectListItem> estadoActual = ViewBag.ListaEstado;
+    //List<SelectListItem> estadoActual = ViewBag.ListaEstado;
 }
 
-<h2>RegistrarUsuarioView</h2>
+<head>
+    <link href="~/Content/Estilos/IniciarSesión-Resgistrarse.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+@*<h2>RegistrarUsuarioView</h2>*@
 
 @using (Html.BeginForm("RegistrarUsuario", "Usuario"))
 {
     @Html.AntiForgeryToken()
-    <form>
-        <fieldset>
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                <label class="control-label col-md-2">Nombre</label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Juan" } })
-                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                </div>
+    @*<body class="bg-primary">*@
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Crear cuenta</h3></div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @id = "inputFirstName", @placeholder = "Juan" } })
+                                                    
+                                                    <label for="inputFirstName">Nombre</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
 
-                <label class="control-label col-md-2">Primer apellido</label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Peréz" } })
-                    @Html.ValidationMessageFor(model => model.PrimerApellido, "", new { @class = "text-danger" })
-                </div>
-
-                <label class="control-label col-md-2">Segundo apellido</label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Pereira" } })
-                    @Html.ValidationMessageFor(model => model.SegundoApellido, "", new { @class = "text-danger" })
-                </div>
-
-                <label class="control-label col-md-2">Correo electrónico</label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CorreoElectronico, new { htmlAttributes = new { @class = "form-control", @placeholder = "JuanPP@gmail.com" } })
-                    @Html.ValidationMessageFor(model => model.CorreoElectronico, "", new { @class = "text-danger" })
-                </div>
-
-                <label class="control-label col-md-2">Contraseña</label>
-                <div class="col-md-10">
-                    @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @placeholder = "Prueba" })
-                    @Html.ValidationMessageFor(model => model.Contrasenna, "", new { @class = "text-danger" })
-
-                </div>
-
-                <label class="control-label col-md-2">Tipo de usuario</label>
-                <div class="col-md-10">
-                    @Html.DropDownList("ID_Perfil", perfil, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ID_Perfil, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Tipo de usuario</label>
-                    <div class="col-md-10">
-                        @Html.DropDownList("EstadoActual", estadoActual, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.EstadoActual, "", new { @class = "text-danger" })
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Peréz" } })
+                                                    
+                                                    <label for="inputLastName">Primer apellido</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Pereira" } })
+                                                    
+                                                    <label for="inputLastName">Segundo apellido</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            @Html.EditorFor(model => model.CorreoElectronico, new { htmlAttributes = new { @class = "form-control", @placeholder = "JuanPP@gmail.com" } })
+                                            
+                                            <label for="inputEmail">Correo electrónico</label>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @placeholder = "Prueba" })
+                                                    <label for="inputPassword">Contraseña</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    @Html.DropDownList("ID_Perfil", perfil, htmlAttributes: new { @class = "form-control" })
+                                                    <label for="inputPassword">Perfil</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Crear cuenta" class="btn btn-primary" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <div class="small"><a href="@Url.Action("IniciarSesionView", "Usuario")">Tienes una cuenta? Puedes iniciar sesión aqui</a></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </main>
+        </div>
+    </div>
 
 
-                <input type="submit" value="Crear usuario" class="btn btn-primary" />
-            </div>
-        </fieldset>
-    </form>
+    @*</body>*@
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryajax")
-    <script type="text/javascript">
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 }

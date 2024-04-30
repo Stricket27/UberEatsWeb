@@ -20,6 +20,7 @@ namespace Infraestructure.Repository
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     usuario.CorreoElectronico.ToLower();
+                    usuario.EstadoActual = "Activo";
                     context.Usuario.Add(usuario);
                     context.SaveChanges();
                 }
