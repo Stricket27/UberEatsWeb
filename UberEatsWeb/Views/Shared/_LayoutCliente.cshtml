@@ -1,17 +1,35 @@
 ﻿<head>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/navbars/">
     <link href="~/Content/Estilos/Navbar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
+
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a> @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link active" })</a></li>
-                    <li class="nav-item"><a> @Html.ActionLink("Sobre nosotros", "About", "Home", null, new { @class = "nav-link" })</a></li>
-                    <li class="nav-item"><a> @Html.ActionLink("Contactos", "Contact", "Home", null, new { @class = "nav-link" })</a></li>
-                    <li class="nav-item dropdown">
+    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Thirteenth navbar example">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11" aria-controls="navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                <a class="navbar-brand col-lg-3 me-0"><img width="35pc" src="~/Content/Imagenes/UberEats-Logo.png" /></a>
+                <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("About", "Home")">Sobre nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Contact", "Home")">Contactos</a>
+                    </li>
+                </ul>
+
+                <div class="d-lg-flex col-lg-3 justify-content-lg-end" style="margin-right: 7pc">
+                    <div class="dropdown" style="margin-right: 7pc">
                         @{
                             String nombreUsuario = " Mi cuenta";
                             String correoUsuario = "";
@@ -20,15 +38,17 @@
                             {
                                 Infraestructure.Models.Usuario usuario = new Infraestructure.Models.Usuario();
                                 usuario = (Infraestructure.Models.Usuario)Session["Usuario"];
-                                nombreUsuario = $"{usuario.Nombre} {usuario.PrimerApellido} {usuario.SegundoApellido}";
+                                nombreUsuario = $" {usuario.Nombre} {usuario.PrimerApellido} {usuario.SegundoApellido}";
                                 correoUsuario = usuario.CorreoElectronico;
                             }
                         }
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mi cuenta</a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>@nombreUsuario
+                        </button>
+                        <ul class="dropdown-menu">
                             @if (Session["Usuario"] != null)
                             {
-                                <li><a class="dropdown-item">@correoUsuario</a></li>
+                                <li><a class="dropdown-item" href="#">@correoUsuario</a></li>
                             }
                             @if (Session["Usuario"] == null)
                             {
@@ -39,13 +59,12 @@
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="@Url.Action("CerrarSesion","Usuario")">Cerrar sesión</a></li>
                             }
+
                         </ul>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
-    <div class="container">
-        @RenderBody()
-    </div>
+    @RenderBody()
 </body>

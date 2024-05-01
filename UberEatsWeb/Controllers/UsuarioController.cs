@@ -43,15 +43,22 @@ namespace UberEatsWeb.Controllers
         //Carga de datos cuando el usuario se va a registrar=
         public ActionResult RegistrarUsuarioView()
         {
-            //List<SelectListItem> listaEstado = new List<SelectListItem>();
-            //listaEstado.Add(new SelectListItem() { Text = "Activo", Value = "Activo" });
-            //ViewBag.ListaEstado = listaEstado;
 
-            ViewBag.Perfil = Perfil().Select(x => new SelectListItem
+            var perfil = Perfil().Select(x => new SelectListItem
             {
                 Text = x.Perfil1.ToString(),
                 Value = x.ID_Perfil.ToString()
             }).ToList();
+
+            var usuarioID = 3;
+
+            var perfilPorDefecto = perfil.FirstOrDefault(x => x.Value == usuarioID.ToString());
+            if (perfilPorDefecto != null)
+            {
+                perfilPorDefecto.Selected = true;
+            }
+
+            ViewBag.Perfil = perfil;
 
             return View();
         }
