@@ -75,6 +75,23 @@ namespace UberEatsWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult CambiarEstado(int id)
+        {
+            try
+            {
+                serviceProducto.CambiarEstado(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                return RedirectToAction("Default", "Error");
+            }
+            return RedirectToAction("Index");
+        }
+
         public List<Restaurante> Restaurantes()
         {
             List<Restaurante> listaRestaurantes = null;

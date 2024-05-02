@@ -20,6 +20,7 @@ namespace Infraestructure.Repository
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     context.Producto.Add(producto);
+                    producto.EstadoActual = "Activo";
                     context.SaveChanges();
                 }
             }
@@ -41,21 +42,21 @@ namespace Infraestructure.Repository
         {
             try
             {
-
                 using (MyContext context = new MyContext())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
+
                     Producto producto = (from p in context.Producto
-                                         where p.ID_Producto == id
-                                         select p).FirstOrDefault();
+                                               where p.ID_Producto == id
+                                               select p).FirstOrDefault();
 
                     if (producto.EstadoActual == "Activo")
                     {
                         producto.EstadoActual = "Inactivo";
                     }
-                    else if (producto.EstadoActual == "Activo")
+                    else if (producto.EstadoActual == "Inactivo")
                     {
-                        producto.EstadoActual = "Inactivo";
+                        producto.EstadoActual = "Activo";
                     }
 
                     context.Entry(producto).State = System.Data.Entity.EntityState.Modified;
