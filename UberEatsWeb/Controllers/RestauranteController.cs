@@ -43,11 +43,26 @@ namespace UberEatsWeb.Controllers
 
             ViewBag.listaEstado = listaEstado;
 
-            ViewBag.TipoRestaurante = TipoRestaurantes().Select(x => new SelectListItem()
+            var tipoRestaurantesList = TipoRestaurantes().Select(x => new SelectListItem()
             {
                 Text = x.TipoRestaurante1.ToString(),
                 Value = x.ID_TipoRestaurante.ToString()
             }).ToList();
+
+            // Agregar el elemento inicial "Seleccione el tipo de restaurante"
+            tipoRestaurantesList.Insert(0, new SelectListItem
+            {
+                Text = "Seleccione el tipo de restaurante",
+                Value = ""
+            });
+
+            ViewBag.TipoRestaurante = tipoRestaurantesList;
+
+            //ViewBag.TipoRestaurante = TipoRestaurantes().Select(x => new SelectListItem()
+            //{
+            //    Text = x.TipoRestaurante1.ToString(),
+            //    Value = x.ID_TipoRestaurante.ToString()
+            //}).ToList();
 
             Usuario usuario1 = null;
             try
@@ -90,6 +105,23 @@ namespace UberEatsWeb.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult CambiarEstado(int id)
+        {
+            try
+            {
+                serviceRestaurante.CambiarEstado(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                return RedirectToAction("Default", "Error");
             }
             return RedirectToAction("Index");
         }

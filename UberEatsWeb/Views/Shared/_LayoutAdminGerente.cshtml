@@ -9,9 +9,7 @@
 
     <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <img width="40" src="~/Content/Imagenes/UberEats-Logo.png"/>
-            @*<svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap" /></svg>*@
-            @*<span class="fs-4">Sidebar</span>*@
+            <img width="40" src="~/Content/Imagenes/UberEats-Logo.png" />
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
@@ -21,12 +19,6 @@
                     Inicio
                 </a>
             </li>
-            @*<li>
-            <a href="@Url.Action("Index", "Home")" class="nav-link link-body-emphasis ">
-                <i class="fa-solid fa-gauge"></i>
-                Reportes
-            </a>
-        </li>*@
             <li>
                 <a href="@Url.Action("Index", "Usuario")" class="nav-link link-body-emphasis">
                     <i class="fa-solid fa-users"></i>
@@ -35,7 +27,6 @@
             </li>
             <li>
                 <a href="@Url.Action("Index", "Restaurante")" class="nav-link link-body-emphasis">
-                    @*<svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table" /></svg>*@
                     <i class="fa-solid fa-utensils"></i>
                     Restaurantes
                 </a>
@@ -50,7 +41,7 @@
         <hr>
         <div class="dropdown">
             @{
-                String nombreUsuario = " Mi cuenta";
+                String nombreUsuario = "Mi cuenta";
                 String correoUsuario = "";
 
                 if (Session["Usuario"] != null)
@@ -62,9 +53,8 @@
                 }
             }
             <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                @*<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">*@
                 <i class="fa-solid fa-user"></i>
-                 <strong>@nombreUsuario</strong>
+                <strong>@nombreUsuario</strong>
             </a>
             <ul class="dropdown-menu text-small shadow">
                 @if (Session["Usuario"] != null)

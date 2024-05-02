@@ -4,72 +4,111 @@
     List<SelectListItem> perfil = ViewBag.Perfil ?? new List<SelectListItem>();
     List<SelectListItem> estadoActual = ViewBag.ListaEstado;
 }
-
-<h2>AgregarUsuarioView</h2>
+<link href="~/Content/Estilos/Agregar-Editar.css" rel="stylesheet" />
+<h1 style="text-align: center">Agregar nuevo usuario</h1>
 
 @using (Html.BeginForm("AgregarUsuario", "Usuario"))
 {
     @Html.AntiForgeryToken()
-    <form>
-        <fieldset>
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                <label class="control-label col-md-2">Nombre</label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Juan" } })
-                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                </div>
+    <main class="form-signin w-100 m-auto">
+        <form>
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
+                <label for="floatingInput">Nombre</label>
+            </div>
 
-                <label class="control-label col-md-2">Primer apellido</label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Peréz" } })
-                    @Html.ValidationMessageFor(model => model.PrimerApellido, "", new { @class = "text-danger" })
-                </div>
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
+                <label for="floatingInput">Primer apellido</label>
+            </div>
 
-                <label class="control-label col-md-2">Segundo apellido</label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Pereira" } })
-                    @Html.ValidationMessageFor(model => model.SegundoApellido, "", new { @class = "text-danger" })
-                </div>
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
+                <label for="floatingInput">Segundo apellido</label>
+            </div>
 
-                <label class="control-label col-md-2">Correo electrónico</label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CorreoElectronico, new { htmlAttributes = new { @class = "form-control", @placeholder = "JuanPP@gmail.com" } })
-                    @Html.ValidationMessageFor(model => model.CorreoElectronico, "", new { @class = "text-danger" })
-                </div>
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.CorreoElectronico, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
+                <label for="floatingInput">Correo electrónico</label>
+            </div>
 
-                <label class="control-label col-md-2">Contraseña</label>
-                <div class="col-md-10">
-                    @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @placeholder = "Prueba" })
-                    @Html.ValidationMessageFor(model => model.Contrasenna, "", new { @class = "text-danger" })
+            <div class="form-floating">
+                @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @id = "floatingPassword", @placeholder = "Password" })
+                <label for="floatingPassword">Contraseña</label>
+            </div>
 
-                </div>
+            @*<label class="control-label col-md-2">Tipo de usuario</label>*@
+            <div class="col-md-13">
+                @Html.DropDownList("ID_Perfil", (IEnumerable<SelectListItem>)perfil, "Seleccione el perfil", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ID_Perfil, "", new { @class = "text-danger" })
+            </div>
 
-                <label class="control-label col-md-2">Tipo de usuario</label>
-                <div class="col-md-10">
-                    @Html.DropDownList("ID_Perfil", perfil, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ID_Perfil, "", new { @class = "text-danger" })
-                </div>
+            <div class="form-floating mb-3">
+            </div>
 
+            <button class="btn btn-primary w-100 py-2" type="submit">Crear usuario</button>
+        </form>
+    </main>
+    @*<form>
+            <fieldset>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
+                    <label class="control-label col-md-2">Nombre</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Juan" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    </div>
+
+                    <label class="control-label col-md-2">Primer apellido</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Peréz" } })
+                        @Html.ValidationMessageFor(model => model.PrimerApellido, "", new { @class = "text-danger" })
+                    </div>
+
+                    <label class="control-label col-md-2">Segundo apellido</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Pereira" } })
+                        @Html.ValidationMessageFor(model => model.SegundoApellido, "", new { @class = "text-danger" })
+                    </div>
+
+                    <label class="control-label col-md-2">Correo electrónico</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CorreoElectronico, new { htmlAttributes = new { @class = "form-control", @placeholder = "JuanPP@gmail.com" } })
+                        @Html.ValidationMessageFor(model => model.CorreoElectronico, "", new { @class = "text-danger" })
+                    </div>
+
+                    <label class="control-label col-md-2">Contraseña</label>
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @placeholder = "Prueba" })
+                        @Html.ValidationMessageFor(model => model.Contrasenna, "", new { @class = "text-danger" })
+
+                    </div>
+
                     <label class="control-label col-md-2">Tipo de usuario</label>
                     <div class="col-md-10">
-                        @Html.DropDownList("EstadoActual", estadoActual, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.EstadoActual, "", new { @class = "text-danger" })
+                        @Html.DropDownList("ID_Perfil", perfil, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ID_Perfil, "", new { @class = "text-danger" })
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Tipo de usuario</label>
+                        <div class="col-md-10">
+                            @Html.DropDownList("EstadoActual", estadoActual, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.EstadoActual, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <input type="submit" value="Crear usuario" class="btn btn-primary" />
                 </div>
-
-
-                <input type="submit" value="Crear usuario" class="btn btn-primary" />
-            </div>
-        </fieldset>
-    </form>
+            </fieldset>
+        </form>*@
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryajax")
-    <script type="text/javascript">
-    </script>
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryajax")
+        <script type="text/javascript">
+        </script>
 
-}
+    }*@

@@ -45,6 +45,7 @@ namespace Infraestructure.Repository
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     context.Restaurante.Add(restaurante);
+                    restaurante.EstadoActual = "Activo";
                     context.SaveChanges();
                 }
             }
@@ -113,7 +114,7 @@ namespace Infraestructure.Repository
                     {
                         restaurante.EstadoActual = "Inactivo";
                     }
-                    else if (restaurante.EstadoActual == "Activo")
+                    else if (restaurante.EstadoActual == "Inactivo")
                     {
                         restaurante.EstadoActual = "Activo";
                     }

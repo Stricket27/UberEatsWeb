@@ -271,10 +271,13 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\EstiloNavbarAdminGerente.css" />
+    <Content Include="Content\Estilos\Agregar-Editar.css" />
     <Content Include="Content\Estilos\IniciarSesion-Registrar.css" />
+    <Content Include="Content\Estilos\Inicio.css" />
     <Content Include="Content\Estilos\Navbar.css" />
     <Content Include="Content\Estilos\SideNavbar.css" />
     <Content Include="Content\Imagenes\UberEats-Logo.png" />
+    <Content Include="Content\Imagenes\UberEats-Portada.png" />
     <Content Include="Content\sweetalert.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

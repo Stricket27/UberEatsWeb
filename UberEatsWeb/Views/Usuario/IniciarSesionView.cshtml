@@ -9,29 +9,29 @@
 @using (Html.BeginForm("IniciarSesion", "Usuario"))
 {
     @Html.AntiForgeryToken()
-<main class="form-signin w-100 m-auto">
-    <form>
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <img class="mb-4" src="~/Content/Imagenes/UberEats-Logo.png" alt="" width="200">
-        </ul>
-        
-        <h3 class="justify-content-center fw-normal">Iniciar sesión</h3>
+    <main class="form-signin w-100 m-auto">
+        <form>
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <img class="mb-4" src="~/Content/Imagenes/UberEats-Logo.png" alt="" width="200">
+            </ul>
 
-        <div class="form-floating mb-3">
-            @Html.EditorFor(model => model.CorreoElectronico, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
-            <label for="floatingInput">Correo electrónico</label>
-        </div>
+            <h3 class="justify-content-center fw-normal">Iniciar sesión</h3>
 
-        <div class="form-floating">
-            @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @id = "floatingPassword", @placeholder = "Password" })
-            <label for="floatingPassword">Contraseña</label>
-        </div>
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.CorreoElectronico, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
+                <label for="floatingInput">Correo electrónico</label>
+            </div>
 
-        <button class="btn btn-primary w-100 py-2" type="submit">Ingresar</button>
-        <p class="small fw-bold mt-2 pt-1 mb-0">
-            No tienes cuenta? <a href="@Url.Action("RegistrarUsuarioView", "Usuario")"
-                                 class="link-danger">Registrate</a>
-        </p>
-    </form>
-</main>
+            <div class="form-floating">
+                @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @id = "floatingPassword", @placeholder = "Password" })
+                <label for="floatingPassword">Contraseña</label>
+            </div>
+
+            <button class="btn btn-primary w-100 py-2" type="submit">Ingresar</button>
+            <p class="small fw-bold mt-2 pt-1 mb-0">
+                No tienes cuenta? <a href="@Url.Action("RegistrarUsuarioView", "Usuario")"
+                                     class="link-danger">Registrate</a>
+            </p>
+        </form>
+    </main>
 }

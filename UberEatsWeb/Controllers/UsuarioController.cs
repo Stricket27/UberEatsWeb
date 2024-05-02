@@ -100,11 +100,25 @@ namespace UberEatsWeb.Controllers
             listaEstado.Add(new SelectListItem() { Text = "Activo", Value = "Activo" });
             ViewBag.ListaEstado = listaEstado;
 
-            ViewBag.Perfil = Perfil().Select(x => new SelectListItem
+            var perfilList = Perfil().Select(x => new SelectListItem()
             {
                 Text = x.Perfil1.ToString(),
                 Value = x.ID_Perfil.ToString()
             }).ToList();
+
+            perfilList.Insert(0, new SelectListItem
+            {
+                Text = "Seleccione el tipo de restaurante",
+                Value = ""
+            });
+
+            ViewBag.Perfil = perfilList;
+
+            //ViewBag.Perfil = Perfil().Select(x => new SelectListItem
+            //{
+            //    Text = x.Perfil1.ToString(),
+            //    Value = x.ID_Perfil.ToString()
+            //}).ToList();
 
             return View();
         }
