@@ -17,7 +17,6 @@ namespace UberEatsWeb.Controllers
     public class UsuarioController : Controller
     {
         IServiceUsuario serviceUsuario = new ServiceUsuario();
-        // Se va a mostrar la lista de todos los Usuario, este metodo esta por default y es mejor no cambiar el nombre de Index
         public ActionResult Index()
         {
             IEnumerable<Usuario> listaUsuarios = null;
@@ -39,8 +38,6 @@ namespace UberEatsWeb.Controllers
             }
             return View(listaUsuarios);
         }
-
-        //Carga de datos cuando el usuario se va a registrar=
         public ActionResult RegistrarUsuarioView()
         {
 
@@ -62,8 +59,6 @@ namespace UberEatsWeb.Controllers
 
             return View();
         }
-
-        //Acción que el usuario pueda registrarse
         [HttpPost]
         public ActionResult RegistrarUsuario(Usuario usuario)
         {
@@ -92,38 +87,31 @@ namespace UberEatsWeb.Controllers
             }
             return RedirectToAction("IniciarSesionView");
         }
-
-        //Carga de datos cuando el Administrador va agregar un usuario nuevo
         public ActionResult AgregarUsuarioView()
         {
             List<SelectListItem> listaEstado = new List<SelectListItem>();
             listaEstado.Add(new SelectListItem() { Text = "Activo", Value = "Activo" });
             ViewBag.ListaEstado = listaEstado;
 
-            var perfilList = Perfil().Select(x => new SelectListItem()
+
+
+            var perfilLista = Perfil().Select(x => new SelectListItem()
             {
                 Text = x.Perfil1.ToString(),
                 Value = x.ID_Perfil.ToString()
             }).ToList();
 
-            perfilList.Insert(0, new SelectListItem
+            perfilLista.Insert(0, new SelectListItem
             {
-                Text = "Seleccione el tipo de restaurante",
+                Text = "Seleccione el perfil",
                 Value = ""
             });
 
-            ViewBag.Perfil = perfilList;
-
-            //ViewBag.Perfil = Perfil().Select(x => new SelectListItem
-            //{
-            //    Text = x.Perfil1.ToString(),
-            //    Value = x.ID_Perfil.ToString()
-            //}).ToList();
+            ViewBag.Perfil = perfilLista;
 
             return View();
         }
 
-        //Acción que realizar cuando el Administrador ya agregó un nuevo usuario
 
         [HttpPost]
         public ActionResult AgregarUsuario(Usuario usuario)
@@ -153,8 +141,6 @@ namespace UberEatsWeb.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        //Lista que muestra todos los perfiles disponibles en la DB
         public List<Perfil> Perfil()
         {
             List<Perfil> listaPerfiles = null;
@@ -168,8 +154,6 @@ namespace UberEatsWeb.Controllers
             }
             return listaPerfiles;
         }
-
-        //Acción que va a realizar al cambiar el estado actual
         public ActionResult CambiarEstado(int id)
         {
             try
@@ -186,14 +170,11 @@ namespace UberEatsWeb.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        //Metodo en donde se va a redigir en iniciar sesión
         public ActionResult IniciarSesionView()
         {
             return View();
         }
 
-        //Metodo para iniciar sesión
         [HttpPost]
         public ActionResult IniciarSesion(Usuario pUsuario)
         {
@@ -229,8 +210,6 @@ namespace UberEatsWeb.Controllers
             }
             return View("IniciarSesionView");
         }
-
-        //Metodo por si no tiene autorizacion de un sitio
         public ActionResult SinAutorizacion()
         {
             ViewBag.Message = "No autorizado";
@@ -241,8 +220,6 @@ namespace UberEatsWeb.Controllers
             }
             return View();
         }
-
-        //Metodo para cerrar sesión
         public ActionResult CerrarSesion()
         {
             try

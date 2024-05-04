@@ -58,11 +58,7 @@ namespace UberEatsWeb.Controllers
 
             ViewBag.TipoRestaurante = tipoRestaurantesList;
 
-            //ViewBag.TipoRestaurante = TipoRestaurantes().Select(x => new SelectListItem()
-            //{
-            //    Text = x.TipoRestaurante1.ToString(),
-            //    Value = x.ID_TipoRestaurante.ToString()
-            //}).ToList();
+            //ViewBag.TipoRestaurante = ListaTipoRestaurantes();
 
             Usuario usuario1 = null;
             try
@@ -139,5 +135,17 @@ namespace UberEatsWeb.Controllers
             }
             return listaRestaurante;
         }
+
+        //public MultiSelectList ListaTipoRestaurantes(ICollection<TipoRestaurante> tipoRestaurantes = null)
+        //{
+        //    IServiceTipoRestaurante serviceTipoRestaurante = new ServiceTipoRestaurante();
+        //    IEnumerable<TipoRestaurante> listaTipoRestauarante = serviceTipoRestaurante.ListaTipoRestaurantes();
+        //    int[] listaTR = null;
+        //    if (tipoRestaurantes != null)
+        //    {
+        //        listaTR = tipoRestaurantes.Select(tr => tr.ID_TipoRestaurante).ToArray();
+        //    }
+        //    return new MultiSelectList(listaTipoRestauarante, "ID_TipoRestaurante", "TipoRestaurante1", listaTR);
+        //}
     }
 }

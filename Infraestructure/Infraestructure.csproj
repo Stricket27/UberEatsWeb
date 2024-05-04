@@ -246,9 +246,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryInterface\IRepositoryProducto.cs" />
     <Compile Include="RepositoryInterface\IRepositoryRestaurante.cs" />
+    <Compile Include="RepositoryInterface\IRepositoryTipoRestaurante.cs" />
     <Compile Include="RepositoryInterface\IRepositoryUsuario.cs" />
     <Compile Include="Repository\RepositoryProducto.cs" />
     <Compile Include="Repository\RepositoryRestaurante.cs" />
+    <Compile Include="Repository\RepositoryTipoRestaurante.cs" />
     <Compile Include="Repository\RepositoryUsuario.cs" />
     <Compile Include="Utils\Log.cs" />
   </ItemGroup>

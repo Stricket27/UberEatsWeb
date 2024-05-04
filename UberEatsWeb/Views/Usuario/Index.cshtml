@@ -4,139 +4,83 @@
 
 <h1 style="text-align: center">Lista de usuarios</h1>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="agregarUsuarioForm">
-                @*Contenido del formulario*@
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
+<p>
+    <a href="@Url.Action("AgregarUsuarioView", "Usuario")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nuevo usuario</a>
+</p>
+
+<style>
+    .este {
+        height: 30em;
+        overflow: auto;
+    }
+</style>
+<div class="container-fluid row">
+    <div id="detalleseleccion" name="detalleseleccion" class="este">
+        <table class="table table-striped" style="text-align: center">
+            <tr>
+                <th>
+                    Nombre completo
+                </th>
+                <th>
+                    Correo electrónico
+                </th>
+                <th>
+                    Perfil
+                </th>
+                <th>
+                    Estado actual
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td colspan="1">
+                        @Html.DisplayFor(modelItem => item.Nombre) @Html.DisplayFor(modelItem => item.PrimerApellido) @Html.DisplayFor(modelItem => item.SegundoApellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CorreoElectronico)
+                    </td>
+                    @if (item.ID_Perfil == 1)
+                    {
+                        <td>
+                            Administrador
+                        </td>
+                    }
+                    else if (item.ID_Perfil == 2)
+                    {
+                        <td>
+                            Gerente
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            Cliente
+                        </td>
+                    }
+                    <td>
+                        @if (item.EstadoActual == "Activo")
+                        {
+                            <a href="@Url.Action("CambiarEstado", "Usuario", new {id = item.ID_Usuario})" class="btn"><i class="fa-solid fa-user" style="color: green"></i></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("CambiarEstado", "Usuario", new {id = item.ID_Usuario})" class="btn"><i class="fa-solid fa-user" style="color: red"></i></a>
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("AgregarUsuarioView", "Usuario")" class="btn"><i class="fa-solid fa-pen-to-square" style="color: blue"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
 </div>
 
-@*<p>
-        <a href="@Url.Action("AgregarUsuarioView", "Usuario")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nuevo usuario</a>
-    </p>*@
 
-<table class="table table-striped" style="text-align: center">
-    <tr>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Primer apellido
-        </th>
-        <th>
-            Segundo apellido
-        </th>
-        <th>
-            Correo electrónico
-        </th>
-        <th>
-            Perfil
-        </th>
-        <th>
-            Estado actual
-        </th>
-        <th>
-            Acciones
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrimerApellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SegundoApellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CorreoElectronico)
-            </td>
-            @if (item.ID_Perfil == 1)
-            {
-                <td>
-                    Administrador
-                </td>
-            }
-            else if (item.ID_Perfil == 2)
-            {
-                <td>
-                    Gerente
-                </td>
-            }
-            else
-            {
-                <td>
-                    Cliente
-                </td>
-            }
-            <td>
-                @if (item.EstadoActual == "Activo")
-                {
-                    <a href="@Url.Action("CambiarEstado", "Usuario", new {id = item.ID_Usuario})" class="btn"><i class="fa-solid fa-user" style="color: green"></i></a>
-                }
-                else
-                {
-                    <a href="@Url.Action("CambiarEstado", "Usuario", new {id = item.ID_Usuario})" class="btn"><i class="fa-solid fa-user" style="color: red"></i></a>
-                }
-            </td>
-            <td>
-                <a href="@Url.Action("AgregarUsuarioView", "Usuario")" class="btn"><i class="fa-solid fa-pen-to-square" style="color: blue"></i></a>
-            </td>
-        </tr>
-    }
-
-</table>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+KE5Tl8E/6AZxwGt+g4+ipr4ltwM2a+WY7fPNI8" crossorigin="anonymous"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        // Función para cargar el formulario de agregar usuario dentro del modal
-        $('#exampleModal').on('show.bs.modal', function (e) {
-            // Hacer una solicitud AJAX para cargar el contenido del formulario
-            $.ajax({
-                url: '@Url.Action("AgregarUsuarioView", "Usuario")',
-                type: 'GET',
-                success: function (data) {
-                    // Insertar el contenido del formulario en el modal
-                    $('#agregarUsuarioForm').html(data);
-                },
-                error: function () {
-                    alert('Error al cargar el formulario de agregar usuario.');
-                }
-            });
-        });
-
-        // Esta parte del código se ejecutará cuando se haga clic en el botón "Save changes"
-        $('#saveChangesButton').on('click', function () {
-            // Aquí puedes agregar lógica adicional si necesitas procesar el formulario antes de cerrar el modal
-        });
-    });
-    //const myModal = document.getElementById('myModal')
-    //const myInput = document.getElementById('myInput')
-
-    //myModal.addEventListener('shown.bs.modal', () => {
-    //    myInput.focus()
-    //})
-</script>
