@@ -49,7 +49,6 @@ namespace UberEatsWeb.Controllers
                 Value = x.ID_TipoRestaurante.ToString()
             }).ToList();
 
-            // Agregar el elemento inicial "Seleccione el tipo de restaurante"
             tipoRestaurantesList.Insert(0, new SelectListItem
             {
                 Text = "Seleccione el tipo de restaurante",
