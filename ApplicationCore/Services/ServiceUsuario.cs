@@ -27,6 +27,14 @@ namespace ApplicationCore.Services
             repositoryUsuario.CambiarEstado(id);
         }
 
+        public Usuario EditarUsuario(Usuario usuario)
+        {
+            string encriptarContrasenna = Cryptography.EncrypthAES(usuario.Contrasenna);
+            usuario.Contrasenna = encriptarContrasenna;
+
+            return repositoryUsuario.EditarUsuario(usuario);
+        }
+
         public Usuario IniciarSesion(string correoElectronico, string contrasenna)
         {
             string desencriptarContrasenna = Cryptography.EncrypthAES(contrasenna);

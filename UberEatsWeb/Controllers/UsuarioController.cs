@@ -141,6 +141,56 @@ namespace UberEatsWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult EditarUsuarioView(int? id)
+        {
+            List<SelectListItem> listaEstado = new List<SelectListItem>();
+            listaEstado.Add(new SelectListItem() { Text = "Activo", Value = "Activo" });
+            listaEstado.Add(new SelectListItem() { Text = "Inactivo", Value = "Inactivo" });
+            ViewBag.ListaEstado = listaEstado;
+
+            ViewBag.Perfil = Perfil().Select(x => new SelectListItem
+            {
+                Text = x.Perfil1.ToString(),
+                Value = x.ID_Perfil.ToString()
+            }).ToList();
+
+            ServiceUsuario service = new ServiceUsuario();
+            Usuario usuario = null;
+            try
+            {
+                usuario = service.ObtenerUsuarioPorID(Convert.ToInt32(id));
+                return View(usuario);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                return RedirectToAction("Default", "Error");
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarUsuario(Usuario usuario)
+        {
+            try
+            {
+                Usuario usuario1 = serviceUsuario.EditarUsuario(usuario);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                return RedirectToAction("Default", "Error");
+            }
+            return RedirectToAction("Index");
+        }
         public List<Perfil> Perfil()
         {
             List<Perfil> listaPerfiles = null;

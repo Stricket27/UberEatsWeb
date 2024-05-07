@@ -105,6 +105,70 @@ namespace UberEatsWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult EditarRestauranteView(int? id)
+        {
+            List<SelectListItem> listaEstado = new List<SelectListItem>();
+            listaEstado.Add(new SelectListItem() { Text = "Activo", Value = "Activo" });
+            listaEstado.Add(new SelectListItem() { Text = "Inactivo", Value = "Inactivo" });
+
+            ViewBag.listaEstado = listaEstado;
+
+            ViewBag.TipoRestaurante = TipoRestaurantes().Select(x => new SelectListItem
+            {
+                Text = x.TipoRestaurante1.ToString(),
+                Value = x.ID_TipoRestaurante.ToString()
+            }).ToList();
+
+            ServiceRestaurante service = new ServiceRestaurante();
+            Restaurante restaurante = null;
+            try
+            {
+                restaurante = service.ObtenerRestaurantePorID(Convert.ToInt32(id));
+                return View(restaurante);
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditarRestaurante(HttpPostedFileBase File, Restaurante restaurante)
+        {
+            MemoryStream target = new MemoryStream();
+            try
+            {
+                if (restaurante.Fotografia == null)
+                {
+                    if (File != null)
+                    {
+                        File.InputStream.CopyTo(target);
+                        restaurante.Fotografia = target.ToArray();
+                        ModelState.Remove("Fotografia");
+                    }
+                }
+
+                Restaurante oRestaurante = serviceRestaurante.EditarRestaurante(restaurante);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
+
         public ActionResult CambiarEstado(int id)
         {
             try

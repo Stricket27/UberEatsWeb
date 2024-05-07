@@ -74,7 +74,7 @@
                         }
                     </td>
                     <td>
-                        <a href="@Url.Action("AgregarUsuarioView", "Usuario")" class="btn"><i class="fa-solid fa-pen-to-square" style="color: blue"></i></a>
+                        <a href="@Url.Action("EditarUsuarioView", "Usuario", new {id = item.ID_Usuario})" class="btn"><i class="fa-solid fa-pen-to-square" style="color: blue"></i></a>
                     </td>
                 </tr>
             }

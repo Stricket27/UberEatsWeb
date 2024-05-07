@@ -12,6 +12,7 @@ namespace Infraestructure.RepositoryInterface
         IEnumerable<Usuario> ListaUsuarios();
         Usuario ObtenerUsuarioPorID(int id);
         void AgregarUsuario (Usuario usuario);
+        Usuario EditarUsuario(Usuario usuario);
         void CambiarEstado(int id);
         List<Perfil> ListaPerfiles();
         Usuario IniciarSesion(string correoElectronico, string contrasenna);
