@@ -1,0 +1,46 @@
+﻿@model Infraestructure.Models.Restaurante
+
+@{
+    ViewBag.Title = "DetalleRestauranteView";
+}
+<link href="~/Content/Estilos/Detalle.css" rel="stylesheet" />
+<h1 style="text-align: center">Detalle del restaurante</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="card border-0 shadow">
+                <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(Model.Fotografia)" alt="...">
+                <div class="card-body p-1-1 p-xl-5">
+                    <div class="mb-4">
+                        <h3 class="h4 mb-0">@Html.DisplayFor(model => model.Nombre)</h3>
+                    </div>
+                    <ul class="list-unstyled mb-4">
+                        <span class="text-primary">Ubicación</span>
+                        <li><i class="fa-solid fa-location-dot display-25 me-3"></i>@Html.DisplayFor(model => model.Provincia), @Html.DisplayFor(model => model.Canton), @Html.DisplayFor(model => model.Distrito), @Html.DisplayFor(model => model.DireccionExacta)</li>
+                    </ul>
+
+                    <ul class="list-unstyled mb-4">
+                        <span class="text-primary">Tipo de restaurante</span>
+                        <li>@Html.DisplayFor(model => model.ID_TipoRestaurante)</li>
+                    </ul>
+
+                    <ul class="list-unstyled mb-4">
+                        <span class="text-primary">Estado actual</span>
+                        @if (Model.EstadoActual.Equals("Activo"))
+                        {
+                            
+                            <li><i class="fa-solid fa-utensils" style="color: green"></i> @Html.DisplayFor(model => model.EstadoActual)</li>
+                        }
+                        else
+                        {
+                            
+                            <li><i class="fa-solid fa-utensils" style="color: red"></i> @Html.DisplayFor(model => model.EstadoActual)</li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

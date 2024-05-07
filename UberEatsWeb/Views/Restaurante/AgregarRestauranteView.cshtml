@@ -59,7 +59,7 @@
 
             <div class="form-floating mb-3">
                 @Html.DropDownListFor(model => model.ID_TipoRestaurante, (IEnumerable<SelectListItem>)ViewBag.TipoRestaurante, new { @class = "form-select", id = "ID_TipoRestaurante" })
-                <label for="ID_Perfil">Tipo de restaurante</label>
+                <label for="ID_TipoRestaurante">Tipo de restaurante</label>
                 @Html.ValidationMessageFor(model => model.ID_TipoRestaurante, "", new { @class = "text-danger" })
             </div>
 

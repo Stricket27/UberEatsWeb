@@ -272,6 +272,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\EstiloNavbarAdminGerente.css" />
     <Content Include="Content\Estilos\Agregar-Editar.css" />
+    <Content Include="Content\Estilos\Detalle.css" />
     <Content Include="Content\Estilos\IniciarSesion-Registrar.css" />
     <Content Include="Content\Estilos\Inicio.css" />
     <Content Include="Content\Estilos\Navbar.css" />
@@ -370,6 +371,7 @@
     <Content Include="Views\Producto\AgregarProductoView.cshtml" />
     <Content Include="Views\Usuario\EditarUsuarioView.cshtml" />
     <Content Include="Views\Restaurante\EditarRestauranteView.cshtml" />
+    <Content Include="Views\Restaurante\DetalleRestauranteView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

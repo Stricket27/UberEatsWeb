@@ -168,6 +168,28 @@ namespace UberEatsWeb.Controllers
             }
         }
 
+        public ActionResult DetalleRestauranteView(int? id)
+        {
+            try
+            {
+                Restaurante restaurante = null;
+
+                restaurante = serviceRestaurante.ObtenerRestaurantePorID(Convert.ToInt32(id));
+
+                return View(restaurante);
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
+
         public ActionResult CambiarEstado(int id)
         {
             try

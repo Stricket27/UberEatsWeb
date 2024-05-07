@@ -6,71 +6,71 @@
     <a href="@Url.Action("AgregarRestauranteView", "Restaurante")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nuevo restaurante</a>
 </p>
 
-<table class="table table-striped text-center">
-    <tr>
-        <th>
-            Logo
-        </th>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Provincia
-        </th>
-        <th>
-            Cantón
-        </th>
-        <th>
-            Distrito
-        </th>
-        <th>
-            Estado actual
-        </th>
-        <th>
-            Acciones
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @if (item.Fotografia != null)
-                {
-                    <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(item.Fotografia)" width="50" />
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Provincia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Canton)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Distrito)
-            </td>
-            @if (item.EstadoActual == "Activo")
-            {
-                <td>
-                    <a href="@Url.Action("CambiarEstado", "Restaurante", new {id = item.ID_Restaurante})" class="btn"><i class="fa-solid fa-utensils" style="color: green"></i></a>
-                </td>
-
-            }
-            else
-            {
-                <td>
-                    <a href="@Url.Action("CambiarEstado", "Restaurante", new {id = item.ID_Restaurante})" class="btn"><i class="fa-solid fa-utensils" style="color: red"></i></a>
-                </td>
-
-            }
-            <td>
-                <a href="@Url.Action("DetalleRestauranteView", "Restaurante")" class="btn"><i class="fa-solid fa-circle-info" style="color: blue"></i></a>
-                <a href="@Url.Action("EditarRestauranteView", "Restaurante", new {id = item.ID_Restaurante})" class="btn"><i class="fa-solid fa-pen-to-square" style="color: orange"></i></a>
-            </td>
-        </tr>
+<style>
+    .este {
+        height: 33.8em;
+        overflow: auto;
     }
+</style>
+<div class="container-fluid row">
+    <div id="detalleseleccion" name="detalleseleccion" class="este">
+        <table class="table table-striped text-center">
+            <tr>
+                <th>
+                    Logo
+                </th>
+                <th>
+                    Nombre del restaurante
+                </th>
+                <th>
+                    Ubicación
+                </th>
+                <th>
+                    Estado actual
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.Fotografia != null)
+                        {
+                            <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(item.Fotografia)" width="50" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td colspan="1">
+                        @Html.DisplayFor(modelItem => item.Provincia),  @Html.DisplayFor(modelItem => item.Canton), @Html.DisplayFor(modelItem => item.Distrito)
+                    </td>
+
+                    @if (item.EstadoActual == "Activo")
+                    {
+                        <td>
+                            <a href="@Url.Action("CambiarEstado", "Restaurante", new {id = item.ID_Restaurante})" class="btn"><i class="fa-solid fa-utensils" style="color: green"></i></a>
+                        </td>
+
+                    }
+                    else
+                    {
+                        <td>
+                            <a href="@Url.Action("CambiarEstado", "Restaurante", new {id = item.ID_Restaurante})" class="btn"><i class="fa-solid fa-utensils" style="color: red"></i></a>
+                        </td>
+
+                    }
+                    <td>
+                        <a href="@Url.Action("DetalleRestauranteView", "Restaurante", new {id = item.ID_Restaurante})" class="btn"><i class="fa-solid fa-circle-info" style="color: blue"></i></a>
+                        <a href="@Url.Action("EditarRestauranteView", "Restaurante", new {id = item.ID_Restaurante})" class="btn"><i class="fa-solid fa-pen-to-square" style="color: orange"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
