@@ -1,0 +1,52 @@
+﻿@model Infraestructure.Models.Producto
+
+@{
+    ViewBag.Title = "DetalleProductoView";
+}
+
+<link href="~/Content/Estilos/Detalle.css" rel="stylesheet" />
+<h1 style="text-align: center">Detalle del producto</h1>
+
+<div class="container">
+    <div class="row justify-content-center" style="height: 37.2em">
+        <div class="col-lg-4">
+            <div class="card border-0 shadow">
+                <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(Model.Fotografia)" alt="...">
+                <div class="card-body p-1-1 p-xl-5">
+                    <div class="mb-4">
+                        <h3 class="h4 mb-0">@Html.DisplayFor(model => model.Descripcion)</h3>
+                    </div>
+                    <ul class="list-unstyled mb-4">
+                        <span class="text-primary">Precio</span>
+                        <li><i class="fa-solid fa-money-bill"></i>@Html.DisplayFor(model => model.Precio)</li>
+                    </ul>
+
+                    <ul class="list-unstyled mb-4">
+                        <span class="text-primary">Tipo de producto</span>
+                        <li>@Html.DisplayFor(model => model.ID_TipoProducto)</li>
+                    </ul>
+
+                    <ul class="list-unstyled mb-4">
+                        <span class="text-primary">Restaurante perteneciente</span>
+                        <li>@Html.DisplayFor(model => model.ID_Restaurante)</li>
+                    </ul>
+
+                    <ul class="list-unstyled mb-4">
+                        <span class="text-primary">Estado actual</span>
+                        @if (Model.EstadoActual.Equals("Activo"))
+                        {
+
+                            <li><i class="fa-solid fa-cookie-bite" style="color: green"></i> @Html.DisplayFor(model => model.EstadoActual)</li>
+                        }
+                        else
+                        {
+
+                            <li><i class="fa-solid fa-cookie-bite" style="color: red"></i> @Html.DisplayFor(model => model.EstadoActual)</li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
