@@ -239,12 +239,19 @@ namespace UberEatsWeb.Controllers
                         Session["Rol"] = usuario.Perfil;
                         Log.Info($"Inicio sesion: {pUsuario.CorreoElectronico}");
                         TempData["mensaje"] = Util.SweetAlertHelper.Mensaje("Bienvenido",
-                            usuario.Nombre + " " + usuario.PrimerApellido, SweetAlertMessageType.success
+                            usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido, 
+                            Util.SweetAlertHelper.SweetAlertMessageType.success
                             );
                         return RedirectToAction("Index", "Home");
                     }
+                    else
+                    {
+                        Log.Warn($"Intento de inicio: {pUsuario.CorreoElectronico}");
+                        ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("¿Quién eres?",
+                            "Esta cuenta es inválida, intente de nuevo", Util.SweetAlertHelper.SweetAlertMessageType.error
+                            );
+                    }
                 }
-
             }
             catch (Exception ex)
             {

@@ -47,8 +47,8 @@ namespace Infraestructure.Repository
                     context.Configuration.LazyLoadingEnabled = false;
 
                     Producto producto = (from p in context.Producto
-                                               where p.ID_Producto == id
-                                               select p).FirstOrDefault();
+                                         where p.ID_Producto == id
+                                         select p).FirstOrDefault();
 
                     if (producto.EstadoActual == "Activo")
                     {
@@ -117,6 +117,10 @@ namespace Infraestructure.Repository
         {
             try
             {
+
+                //Select r.Nombre, p.Descripcion
+                //from Restaurante r
+                //inner join Producto p on r.ID_Restaurante = p.ID_Restaurante
                 IEnumerable<Producto> listaProductos = null;
 
                 using (MyContext context = new MyContext())

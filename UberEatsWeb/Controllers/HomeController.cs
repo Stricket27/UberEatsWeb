@@ -10,6 +10,10 @@ namespace UberEatsWeb.Controllers
     {
         public ActionResult Index()
         {
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.NotificationMessage = TempData["mensaje"];
+            }
             return View();
         }
 
