@@ -18,7 +18,7 @@
 @using (Html.BeginForm("EditarRestaurante", "Restaurante", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <div id="detalleseleccion" name="detalleseleccion" class="este">
+    @*<div id="detalleseleccion" name="detalleseleccion" class="este">*@
         <main class="form-signin w-100 m-auto">
             <div class="form-horizontal">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -63,7 +63,7 @@
 
                 @if (Model.Fotografia != null)
                 {
-                    <div class="form-group mb-3">
+                    <div class="form-group mb-3" hidden>
                         @Html.LabelFor(model => model.Fotografia, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <input type="image"
@@ -94,6 +94,6 @@
                 </div>
             </div>
         </main>
-    </div>
+    @*</div>*@
 
 }

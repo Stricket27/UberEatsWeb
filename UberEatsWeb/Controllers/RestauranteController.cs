@@ -38,11 +38,6 @@ namespace UberEatsWeb.Controllers
 
         public ActionResult AgregarRestauranteView(Usuario usuario)
         {
-            List<SelectListItem> listaEstado = new List<SelectListItem>();
-            listaEstado.Add(new SelectListItem() { Text = "Activo", Value = "Activo" });
-
-            ViewBag.listaEstado = listaEstado;
-
             var tipoRestaurantesList = TipoRestaurantes().Select(x => new SelectListItem()
             {
                 Text = x.TipoRestaurante1.ToString(),
@@ -118,11 +113,11 @@ namespace UberEatsWeb.Controllers
                 Value = x.ID_TipoRestaurante.ToString()
             }).ToList();
 
-            ServiceRestaurante service = new ServiceRestaurante();
+            //ServiceRestaurante service = new ServiceRestaurante();
             Restaurante restaurante = null;
             try
             {
-                restaurante = service.ObtenerRestaurantePorID(Convert.ToInt32(id));
+                restaurante = serviceRestaurante.ObtenerRestaurantePorID(Convert.ToInt32(id));
                 return View(restaurante);
             }
             catch (Exception ex)

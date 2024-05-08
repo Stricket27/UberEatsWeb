@@ -33,22 +33,35 @@ namespace UberEatsWeb.Controllers
         }
 
         public ActionResult AgregarProductoView()
-        {
-            List<SelectListItem> listaEstado = new List<SelectListItem>();
-            listaEstado.Add(new SelectListItem() { Text = "Activo", Value = "Activo" });
-            ViewBag.ListaEstado = listaEstado;
+        {   //Tipo de producto
+            var tipoProducto = TipoProductos().Select(x => new SelectListItem()
+            {
+                Text = x.TipoProducto1.ToString(),
+                Value = x.ID_TipoProducto.ToString()
+            }).ToList();
 
-            ViewBag.Restaurante = Restaurantes().Select(x => new SelectListItem()
+            tipoProducto.Insert(0, new SelectListItem
+            {
+                Text = "Seleccione el tipo de producto",
+                Value = ""
+            });
+
+            ViewBag.TipoProducto = tipoProducto;
+
+            //Restaurante
+            var restaurante = Restaurantes().Select(x => new SelectListItem()
             {
                 Text = x.Nombre.ToString(),
                 Value = x.ID_Restaurante.ToString()
             }).ToList();
 
-            ViewBag.TipoProducto = TipoProductos().Select(x => new SelectListItem()
+            restaurante.Insert(0, new SelectListItem
             {
-                Text = x.TipoProducto1.ToString(),
-                Value = x.ID_TipoProducto.ToString()
-            }).ToList();
+                Text = "Seleccione el restaurante perteneciente",
+                Value = ""
+            });
+
+            ViewBag.Restaurante = restaurante;
 
             return View();
         }
@@ -73,6 +86,73 @@ namespace UberEatsWeb.Controllers
                 Log.Error(ex, MethodBase.GetCurrentMethod());
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult EditarProductoView(int? id)
+        {
+            List<SelectListItem> listaEstado = new List<SelectListItem>();
+            listaEstado.Add(new SelectListItem() { Text = "Activo", Value = "Activo" });
+            listaEstado.Add(new SelectListItem() { Text = "Inactivo", Value = "Inactivo" });
+            ViewBag.ListaEstado = listaEstado;
+
+            ViewBag.TipoProducto = TipoProductos().Select(x => new SelectListItem
+            {
+                Text = x.TipoProducto1.ToString(),
+                Value = x.ID_TipoProducto.ToString()
+            }).ToList();
+
+            ViewBag.Restaurante = Restaurantes().Select(x => new SelectListItem
+            {
+                Text = x.Nombre.ToString(),
+                Value = x.ID_Restaurante.ToString()
+            }).ToList();
+
+            Producto producto = null;
+            try
+            {
+                producto = serviceProducto.ObtenerProductoPorID(Convert.ToInt32(id));
+                return View(producto);
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditarProducto(HttpPostedFileBase File, Producto producto) {
+            MemoryStream target = new MemoryStream();
+            try
+            {
+                if (producto.Fotografia == null)
+                {
+                    if (File != null)
+                    {
+                        File.InputStream.CopyTo(target);
+                        producto.Fotografia = target.ToArray();
+                        ModelState.Remove("Fotografia");
+                    }
+                }
+
+                Producto oProducto = serviceProducto.EditarProducto(producto);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
         }
 
         public ActionResult CambiarEstado(int id)

@@ -89,12 +89,6 @@ namespace UberEatsWeb.Controllers
         }
         public ActionResult AgregarUsuarioView()
         {
-            List<SelectListItem> listaEstado = new List<SelectListItem>();
-            listaEstado.Add(new SelectListItem() { Text = "Activo", Value = "Activo" });
-            ViewBag.ListaEstado = listaEstado;
-
-
-
             var perfilLista = Perfil().Select(x => new SelectListItem()
             {
                 Text = x.Perfil1.ToString(),

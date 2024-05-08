@@ -87,9 +87,10 @@ namespace Infraestructure.Repository
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     producto1 = ObtenerProductoPorID(producto.ID_Producto);
-
                     context.Producto.Add(producto);
+
                     context.Entry(producto).State = System.Data.Entity.EntityState.Modified;
+                    retorno = context.SaveChanges();
 
                     if (retorno >= 0)
                     {

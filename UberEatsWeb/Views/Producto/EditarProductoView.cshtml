@@ -1,27 +1,31 @@
 ﻿@model Infraestructure.Models.Producto
 
 @{
-    ViewBag.Title = "AgregarProductoView";
+    ViewBag.Title = "EditarProductoView";
+    List<SelectListItem> estado = ViewBag.ListaEstado;
     List<SelectListItem> restaurante = ViewBag.Restaurante;
     List<SelectListItem> tipoProducto = ViewBag.TipoProducto;
 }
 <link href="~/Content/Estilos/Agregar-Editar.css" rel="stylesheet" />
-<h1 style="text-align: center">Agregar nuevo producto</h1>
+<h1 style="text-align: center">Editar producto</h1>
 
-@using (Html.BeginForm("AgregarProducto", "Producto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("EditarProducto", "Producto", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <main class="form-signin w-100 m-auto">
         <form>
-
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID_Producto)
             <div class="form-floating mb-3">
                 @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
                 <label for="floatingInput">Descripción del producto</label>
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-floating mb-3">
                 @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
                 <label for="floatingInput">Precio</label>
+                @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-floating mb-3">
@@ -36,15 +40,27 @@
                 @Html.ValidationMessageFor(model => model.ID_Restaurante, "", new { @class = "text-danger" })
             </div>
 
-            <label class="control-label">Asignar producto</label>
             <div class="form-floating mb-3">
-
-                <div class="col-md-13">
-                    <input type="file" name="File" class="form-control" placeholder="Asignar logo" />
-                </div>
+                @Html.DropDownListFor(model => model.EstadoActual, (IEnumerable<SelectListItem>)ViewBag.ListaEstado, new { @class = "form-select", id = "EstadoActual" })
+                <label for="EstadoActual">Estado actual</label>
+                @Html.ValidationMessageFor(model => model.EstadoActual, "", new { @class = "text-danger" })
             </div>
 
-            <button class="btn btn-primary w-100 py-2" type="submit">Crear Producto</button>
+            @if (Model.Fotografia != null)
+            {
+                <div class="form-group mb-3" hidden>
+                    @Html.LabelFor(model => model.Fotografia, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="image"
+                               src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(Model.Fotografia)"
+                               id="ImageFile"
+                               style="height:200px;width:300px" />
+                        @Html.HiddenFor(model => model.Fotografia)
+                    </div>
+                </div>
+            }
+
+            <button class="btn btn-primary w-100 py-2" type="submit">Guardar cambios</button>
 
         </form>
     </main>

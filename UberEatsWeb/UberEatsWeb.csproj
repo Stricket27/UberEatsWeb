@@ -372,6 +372,7 @@
     <Content Include="Views\Usuario\EditarUsuarioView.cshtml" />
     <Content Include="Views\Restaurante\EditarRestauranteView.cshtml" />
     <Content Include="Views\Restaurante\DetalleRestauranteView.cshtml" />
+    <Content Include="Views\Producto\EditarProductoView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
