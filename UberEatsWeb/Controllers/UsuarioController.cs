@@ -114,14 +114,14 @@ namespace UberEatsWeb.Controllers
             {
                 if (serviceUsuario.ObtenerUsuarioPorCorreo(usuario.CorreoElectronico.ToLower()) != null)
                 {
-                    TempData["NotificationMessage"] = Util.SweetAlertHelper.Mensaje("ERROR",
-                        "No se puede agregar otro usuario con el mismo correo electrónico:" + " " +
-                        usuario.CorreoElectronico,
-                        SweetAlertMessageType.error);
+                    TempData["NotificationMessage"] = "No se puede agregar otro usuario con el mismo correo electrónico:" + " " + usuario.CorreoElectronico;
+                    TempData["NotificationType"] = "error";
                 }
                 else
                 {
                     serviceUsuario.AgregarUsuario(usuario);
+                    TempData["NotificationMessage"] = "El usuario se creo exitosamente";
+                    TempData["NotificationType"] = "success";
                 }
 
             }
@@ -174,6 +174,8 @@ namespace UberEatsWeb.Controllers
             try
             {
                 Usuario usuario1 = serviceUsuario.EditarUsuario(usuario);
+                TempData["NotificationMessage"] = "El usuario fue editado";
+                TempData["NotificationType"] = "warning";
             }
             catch (Exception ex)
             {
@@ -203,6 +205,8 @@ namespace UberEatsWeb.Controllers
             try
             {
                 serviceUsuario.CambiarEstado(id);
+                TempData["NotificationMessage"] = "Se cambio el estado actual del usuario";
+                TempData["NotificationType"] = "info";
             }
             catch (Exception ex)
             {

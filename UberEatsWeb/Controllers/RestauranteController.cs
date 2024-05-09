@@ -81,16 +81,26 @@ namespace UberEatsWeb.Controllers
             MemoryStream memoryStream = new MemoryStream();
             try
             {
-                if (File != null)
+                if (restaurante != null)
                 {
-                    string fotografia = Path.GetExtension(File.FileName);
-                    File.InputStream.CopyTo(memoryStream);
-                    restaurante.Fotografia = memoryStream.ToArray();
-                    ModelState.Remove("Fotografia");
+                    if (File != null)
+                    {
+                        string fotografia = Path.GetExtension(File.FileName);
+                        File.InputStream.CopyTo(memoryStream);
+                        restaurante.Fotografia = memoryStream.ToArray();
+                        ModelState.Remove("Fotografia");
+                    }
+                    serviceRestaurante.AgregarRestaurante(restaurante);
+                    TempData["NotificationMessage"] = "Se creo el restaurante";
+                    TempData["NotificationType"] = "success";
                 }
-
-                serviceRestaurante.AgregarRestaurante(restaurante);
-
+                else
+                {
+                    TempData["NotificationMessage"] = "Hubo un error al crear el restaurante";
+                    TempData["NotificationType"] = "error";
+                }
+                
+                
             }
             catch (Exception ex)
             {
@@ -147,8 +157,13 @@ namespace UberEatsWeb.Controllers
                         ModelState.Remove("Fotografia");
                     }
                 }
-
-                Restaurante oRestaurante = serviceRestaurante.EditarRestaurante(restaurante);
+                if (restaurante != null)
+                {
+                    Restaurante oRestaurante = serviceRestaurante.EditarRestaurante(restaurante);
+                    TempData["NotificationMessage"] = "El restaurante fue editado";
+                    TempData["NotificationType"] = "warning";
+                }
+                
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -189,6 +204,8 @@ namespace UberEatsWeb.Controllers
         {
             try
             {
+                TempData["NotificationMessage"] = "Se cambio el estado actual del restaurante";
+                TempData["NotificationType"] = "info";
                 serviceRestaurante.CambiarEstado(id);
             }
             catch (Exception ex)

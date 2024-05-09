@@ -72,14 +72,25 @@ namespace UberEatsWeb.Controllers
             MemoryStream memoryStream = new MemoryStream();
             try
             {
-                if (File != null)
+                if (producto != null)
                 {
-                    string fotografia = Path.GetExtension(File.FileName);
-                    File.InputStream.CopyTo(memoryStream);
-                    producto.Fotografia = memoryStream.ToArray();
-                    ModelState.Remove("Fotografia");
+                    if (File != null)
+                    {
+                        string fotografia = Path.GetExtension(File.FileName);
+                        File.InputStream.CopyTo(memoryStream);
+                        producto.Fotografia = memoryStream.ToArray();
+                        ModelState.Remove("Fotografia");
+                    }
+                    serviceProducto.AgregarProducto(producto);
+                    TempData["NotificationMessage"] = "Se creo el producto";
+                    TempData["NotificationType"] = "success";
                 }
-                serviceProducto.AgregarProducto(producto);
+                else
+                {
+                    TempData["NotificationMessage"] = "Hubo un error al crear el producto";
+                    TempData["NotificationType"] = "error";
+                }
+
             }
             catch (Exception ex)
             {
@@ -126,7 +137,8 @@ namespace UberEatsWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarProducto(HttpPostedFileBase File, Producto producto) {
+        public ActionResult EditarProducto(HttpPostedFileBase File, Producto producto)
+        {
             MemoryStream target = new MemoryStream();
             try
             {
@@ -139,8 +151,13 @@ namespace UberEatsWeb.Controllers
                         ModelState.Remove("Fotografia");
                     }
                 }
-
-                Producto oProducto = serviceProducto.EditarProducto(producto);
+                if (producto != null)
+                {
+                    Producto oProducto = serviceProducto.EditarProducto(producto);
+                    TempData["NotificationMessage"] = "El producto fue editado";
+                    TempData["NotificationType"] = "warning";
+                }
+                
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -181,6 +198,8 @@ namespace UberEatsWeb.Controllers
         {
             try
             {
+                TempData["NotificationMessage"] = "Se cambio el estado actual del producto";
+                TempData["NotificationType"] = "info";
                 serviceProducto.CambiarEstado(id);
             }
             catch (Exception ex)

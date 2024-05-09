@@ -2,6 +2,24 @@
 
 <h1 style="text-align: center">Mis restaurantes</h1>
 
+@if (TempData["NotificationMessage"] != null)
+{
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script type="text/javascript">
+        var notificationType = '@TempData["NotificationType"]';
+        var message = '@TempData["NotificationMessage"]';
+        if (notificationType === 'error') {
+            toastr.error(message);
+        } else if (notificationType === 'warning') {
+            toastr.warning(message);
+        } else if (notificationType === 'info') {
+            toastr.info(message);
+        }else {
+            toastr.success(message);
+        }
+    </script>
+}
 <p>
     <a href="@Url.Action("AgregarRestauranteView", "Restaurante")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nuevo restaurante</a>
 </p>
