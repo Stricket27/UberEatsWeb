@@ -44,8 +44,18 @@
 
             <div class="form-floating mb-3">
             </div>
+            <button class="btn btn-primary w-100 py-2" type="submit" id="toastrSuccess">Crear usuario</button>
+            @*<button class="btn btn-primary w-100 py-2" type="submit">Crear usuario</button>*@
 
-            <button class="btn btn-primary w-100 py-2" type="submit">Crear usuario</button>
         </form>
     </main>
+}
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#toastrSuccess").click(function () {
+                toastr.success("El usuario se agregó correctamente", "Exito");
+            })
+        })
+    </script>
 }

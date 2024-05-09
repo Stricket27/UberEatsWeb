@@ -7,6 +7,7 @@
 <main>
     <div class="bd-example">
         <img class="contenedor" id="Imagen" src="~/Content/Imagenes/UberEats-Portada.png" width="100%" height="600" />
+        <button class="btn btn-primary w-100 py-2" id="toastrSuccess">Prueba de toastr</button>
         @*<img class="centrado" src="~/Content/themes/base/images/Logo del condominio.png" />*@
     </div>
     @*<section class="row" aria-labelledby="aspnetTitle">
@@ -43,5 +44,15 @@
 {
     <script>
             @Html.Raw(ViewBag.NotificationMessage)
+    </script>
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#toastrSuccess").click(function () {
+                toastr.success("Bien", "Toastr");
+            })
+        })
     </script>
 }
