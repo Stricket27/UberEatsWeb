@@ -4,14 +4,11 @@
     ViewBag.Title = "AgregarRestauranteView";
     List<SelectListItem> tipoRestaurante = ViewBag.TipoRestaurante;
 
-    string nombreGerente = "";
     int IDUsuario = 0;
-
     if (Session["Usuario"] != null)
     {
         Infraestructure.Models.Usuario usuario = new Infraestructure.Models.Usuario();
         usuario = (Infraestructure.Models.Usuario)Session["Usuario"];
-        nombreGerente = $"{usuario.Nombre} {usuario.PrimerApellido} {usuario.SegundoApellido}";
         IDUsuario = usuario.ID_Usuario;
     }
 }

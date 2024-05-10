@@ -1,5 +1,64 @@
 ﻿@model Infraestructure.Models.Tarjeta
 
-@{ 
+@{
     ViewBag.Title = "AgregarTarjetaView";
+    List<SelectListItem> listaTipoTarjeta = ViewBag.TipoTarjeta;
+
+    int IDUsuario = 0;
+    if (Session["Usuario"] != null)
+    {
+        Infraestructure.Models.Usuario usuario = new Infraestructure.Models.Usuario();
+        usuario = (Infraestructure.Models.Usuario)Session["Usuario"];
+        IDUsuario = usuario.ID_Usuario;
+    }
+}
+
+<link href="~/Content/Estilos/Agregar-Editar.css" rel="stylesheet" />
+
+@using (Html.BeginForm("AgregarTarjeta", "Tarjeta"))
+{
+    @Html.AntiForgeryToken()
+    <main class="form-signin w-100 m-auto">
+        <form>
+            <div class="col-md-10" hidden>
+                @Html.EditorFor(model => model.ID_Usuario, new { htmlAttributes = new { @Value = IDUsuario } })
+            </div>
+
+            <div class="form-floating mb-3">
+                @Html.DropDownListFor(model => model.ID_TipoTarjeta, (IEnumerable<SelectListItem>)ViewBag.TipoTarjeta, new { @class = "form-select", id = "ID_TipoTarjeta" })
+                <label for="ID_TipoTarjeta">Tarjeta</label>
+                @Html.ValidationMessageFor(model => model.ID_TipoTarjeta, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.NumeroTarjeta, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
+                <label for="floatingInput">Número de tarjeta</label>
+            </div>
+
+            <div class="row">
+                <div class="mb-3">
+                    <div data-mdb-input-init class="form-floating">
+                        @Html.EditorFor(model => model.MesVencimiento, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
+                        <label for="floatingInput">Mes de vencimiento</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div data-mdb-input-init class="form-floating">
+                        @Html.EditorFor(model => model.AnnoVencimiento, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
+                        <label for="floatingInput">Año de vencimiento</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-floating">
+                @Html.PasswordFor(model => model.CodigoSeguridad, new { @class = "form-control", @id = "floatingPassword", @placeholder = "Password" })
+                <label for="floatingPassword">Código de seguridad</label>
+            </div>
+
+            <div class="form-floating mb-3">
+            </div>
+            <button class="btn btn-primary w-100 py-2" type="submit">Crear tarjeta</button>
+
+        </form>
+    </main>
 }
