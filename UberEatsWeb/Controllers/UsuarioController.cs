@@ -243,7 +243,7 @@ namespace UberEatsWeb.Controllers
                         Session["Rol"] = usuario.Perfil;
                         Log.Info($"Inicio sesion: {pUsuario.CorreoElectronico}");
                         TempData["mensaje"] = Util.SweetAlertHelper.Mensaje("Bienvenido",
-                            usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido, 
+                            usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido,
                             Util.SweetAlertHelper.SweetAlertMessageType.success
                             );
                         return RedirectToAction("Index", "Home");

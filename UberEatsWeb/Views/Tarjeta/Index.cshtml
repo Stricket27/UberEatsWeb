@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Infraestructure.Models.Tarjeta>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<h1 style="text-align: center">Mis tarjetas</h1>
+
+@if (TempData["NotificationMessage"] != null)
+{
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script type="text/javascript">
+        var notificationType = '@TempData["NotificationType"]';
+        var message = '@TempData["NotificationMessage"]';
+        if (notificationType === 'error') {
+            toastr.error(message);
+        } else if (notificationType === 'warning') {
+            toastr.warning(message);
+        } else if (notificationType === 'info') {
+            toastr.info(message);
+        }else {
+            toastr.success(message);
+        }
+    </script>
+}
+
+<p>
+    <a href="@Url.Action("AgregarTarjetaView", "Tarjeta")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nueva tarjeta</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroTarjeta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MesVencimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnnoVencimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoSeguridad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoActual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoTarjeta.TipoTarjeta1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroTarjeta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MesVencimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnnoVencimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoSeguridad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoActual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoTarjeta.TipoTarjeta1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Tarjeta }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Tarjeta }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Tarjeta })
+            </td>
+        </tr>
+    }
+</table>
+
+<link href="~/Content/Estilos/Tarjeta.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 mb-lg-0 mb-3">
+            <div class="card p-3">
+                <div class="img-box">
+                    <img src="https://www.freepnglogos.com/uploads/visa-logo-download-png-21.png" alt="">
+                </div>
+                <div class="number">
+                    <label class="fw-bold" for="">**** **** **** 1060</label>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <small><span class="fw-bold">Expiry date:</span><span>10/16</span></small>
+                    <small><span class="fw-bold">Name:</span><span>Kumar</span></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-lg-0 mb-3">
+            <div class="card p-3">
+                <div class="img-box">
+                    <img src="https://www.freepnglogos.com/uploads/mastercard-png/file-mastercard-logo-svg-wikimedia-commons-4.png"
+                         alt="">
+                </div>
+                <div class="number">
+                    <label class="fw-bold">**** **** **** 1060</label>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <small><span class="fw-bold">Expiry date:</span><span>10/16</span></small>
+                    <small><span class="fw-bold">Name:</span><span>Kumar</span></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-lg-0 mb-3">
+            <div class="card p-3">
+                <div class="img-box">
+                    <img src="https://www.freepnglogos.com/uploads/discover-png-logo/credit-cards-discover-png-logo-4.png"
+                         alt="">
+                </div>
+                <div class="number">
+                    <label class="fw-bold">**** **** **** 1060</label>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <small><span class="fw-bold">Expiry date:</span><span>10/16</span></small>
+                    <small><span class="fw-bold">Name:</span><span>Kumar</span></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
