@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b748bc423abe41b48f95bf80ecc412e6" Name="Diagram1">
+      <Diagram DiagramId="57e4877b86804895949ac21c38c4f942" Name="Diagram1">
         <EntityTypeShape EntityType="UberEatsDBModel.ClasificacionRestaurante" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UberEatsDBModel.Direccion" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UberEatsDBModel.LineaDetalle" Width="1.5" PointX="12.75" PointY="7.875" IsExpanded="true" />
@@ -21,7 +21,7 @@
         <EntityTypeShape EntityType="UberEatsDBModel.TipoTarjeta" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UberEatsDBModel.Usuario" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
         <AssociationConnector Association="UberEatsDBModel.FK_ClasificacionRestaurante_Restaurante" ManuallyRouted="false" />
-        <AssociationConnector Association="UberEatsDBModel.FK_Direccion_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="UberEatsDBModel.FK_Direccion_Direccion" ManuallyRouted="false" />
         <AssociationConnector Association="UberEatsDBModel.FK_LineaDetalle_OrdenCompra" ManuallyRouted="false" />
         <AssociationConnector Association="UberEatsDBModel.FK_LineaDetalle_Producto" ManuallyRouted="false" />
         <AssociationConnector Association="UberEatsDBModel.FK_OrdenCompra_Restaurante" ManuallyRouted="false" />

@@ -18,8 +18,8 @@ namespace Infraestructure.Models
         public string Provincia { get; set; }
         public string Canton { get; set; }
         public string Distrito { get; set; }
+        public string CodigoPostal { get; set; }
         public string DireccionExacta { get; set; }
-        public string EstadoActual { get; set; }
         public Nullable<int> ID_Usuario { get; set; }
     
         public virtual Usuario Usuario { get; set; }

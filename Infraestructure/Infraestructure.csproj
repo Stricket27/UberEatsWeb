@@ -256,13 +256,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="fonts\glyphicons-halflings-regular.woff" />
     <EntityDeploy Include="Models\MyModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MyModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="fonts\glyphicons-halflings-regular.ttf" />
-    <None Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="Models\MyModel.edmx.diagram">
       <DependentUpon>MyModel.edmx</DependentUpon>
     </None>

@@ -17,12 +17,12 @@
           <Key>
             <PropertyRef Name="ID_Direccion" />
           </Key>
-          <Property Name="ID_Direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Direccion" Type="int" Nullable="false" />
           <Property Name="Provincia" Type="varchar" MaxLength="50" />
           <Property Name="Canton" Type="varchar" MaxLength="50" />
           <Property Name="Distrito" Type="varchar" MaxLength="50" />
-          <Property Name="DireccionExacta" Type="nvarchar" MaxLength="150" />
-          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="50" />
+          <Property Name="DireccionExacta" Type="varchar" MaxLength="150" />
           <Property Name="ID_Usuario" Type="int" />
         </EntityType>
         <EntityType Name="LineaDetalle">
@@ -168,7 +168,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Direccion_Usuario">
+        <Association Name="FK_Direccion_Direccion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -356,7 +356,7 @@
             <End Role="Restaurante" EntitySet="Restaurante" />
             <End Role="ClasificacionRestaurante" EntitySet="ClasificacionRestaurante" />
           </AssociationSet>
-          <AssociationSet Name="FK_Direccion_Usuario" Association="Self.FK_Direccion_Usuario">
+          <AssociationSet Name="FK_Direccion_Direccion" Association="Self.FK_Direccion_Direccion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Direccion" EntitySet="Direccion" />
           </AssociationSet>
@@ -431,14 +431,14 @@
           <Key>
             <PropertyRef Name="ID_Direccion" />
           </Key>
-          <Property Name="ID_Direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Direccion" Type="Int32" Nullable="false" />
           <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Canton" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Distrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DireccionExacta" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DireccionExacta" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ID_Usuario" Type="Int32" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK_Direccion_Usuario" FromRole="Direccion" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Direccion_Direccion" FromRole="Direccion" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="LineaDetalle">
           <Key>
@@ -593,7 +593,7 @@
           <Property Name="Contrasenna" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_Perfil" Type="Int32" />
-          <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Usuario" FromRole="Usuario" ToRole="Direccion" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Direccion" FromRole="Usuario" ToRole="Direccion" />
           <NavigationProperty Name="OrdenCompra" Relationship="Self.FK_OrdenCompra_Usuario" FromRole="Usuario" ToRole="OrdenCompra" />
           <NavigationProperty Name="Perfil" Relationship="Self.FK_Usuario_Perfil" FromRole="Usuario" ToRole="Perfil" />
           <NavigationProperty Name="Restaurante" Relationship="Self.FK_Restaurante_Usuario" FromRole="Usuario" ToRole="Restaurante" />
@@ -611,7 +611,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Direccion_Usuario">
+        <Association Name="FK_Direccion_Direccion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -799,7 +799,7 @@
             <End Role="Restaurante" EntitySet="Restaurante" />
             <End Role="ClasificacionRestaurante" EntitySet="ClasificacionRestaurante" />
           </AssociationSet>
-          <AssociationSet Name="FK_Direccion_Usuario" Association="Self.FK_Direccion_Usuario">
+          <AssociationSet Name="FK_Direccion_Direccion" Association="Self.FK_Direccion_Direccion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Direccion" EntitySet="Direccion" />
           </AssociationSet>
@@ -878,8 +878,8 @@
                 <ScalarProperty Name="Provincia" ColumnName="Provincia" />
                 <ScalarProperty Name="Canton" ColumnName="Canton" />
                 <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
                 <ScalarProperty Name="DireccionExacta" ColumnName="DireccionExacta" />
-                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
                 <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
               </MappingFragment>
             </EntityTypeMapping>
