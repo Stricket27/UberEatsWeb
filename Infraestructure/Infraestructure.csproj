@@ -247,6 +247,7 @@
     <Compile Include="RepositoryInterface\IRepositoryProducto.cs" />
     <Compile Include="RepositoryInterface\IRepositoryRestaurante.cs" />
     <Compile Include="RepositoryInterface\IRepositoryTarjeta.cs" />
+    <Compile Include="RepositoryInterface\IRepositoryUbicacion.cs" />
     <Compile Include="RepositoryInterface\IRepositoryUsuario.cs" />
     <Compile Include="Repository\RepositoryProducto.cs" />
     <Compile Include="Repository\RepositoryRestaurante.cs" />

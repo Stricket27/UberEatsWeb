@@ -47,40 +47,16 @@
             </li>
         </ul>
     </div>
-    @*@if (Session["Usuario"] == null || (Session["Usuario"] != null && Convert.ToInt32(Session["Rol"]) == 2))
-        {
-            Layout = ("~/Views/Shared/_LayoutCliente.cshtml");
-        }
-        else
-        {
-            Layout = ("~/Views/Shared/_LayoutAdminGerente.cshtml");
-        }*@
-    @if (Session["Usuario"] == null)
+    @*En caso que un usuario no a ingresado a su cuenta*@
+    @if (Session["Usuario"] == null || (Session["Usuario"] != null && Convert.ToInt32(Session["Rol"]) == 2))
     {
-        // Si no hay un usuario en la sesión, mostrar el diseño de cliente por defecto
-        Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+        Layout = ("~/Views/Shared/_LayoutCliente.cshtml");
     }
+    @*En caso que el usuario que ingreso es un administrador*@
     else
     {
-        int rol = Convert.ToInt32(Session["Rol"]);
-
-        // Si el rol es 1 (Administrador) o 2 (Gerente), mostrar el diseño de admin o gerente
-        if (rol == 1 || rol == 2)
-        {
-            Layout = "~/Views/Shared/_LayoutAdminGerente.cshtml";
-        }
-        // Si el rol es 3 (Cliente), mostrar el diseño de cliente
-        else if (rol == 3)
-        {
-            Layout = "~/Views/Shared/_LayoutCliente.cshtml";
-        }
-        // En caso contrario, mostrar el diseño de cliente por defecto
-        else
-        {
-            Layout = "~/Views/Shared/_LayoutCliente.cshtml";
-        }
+        Layout = ("~/Views/Shared/_LayoutAdminGerente.cshtml");
     }
-
 
     <div class="container body-content">
         @RenderBody()

@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="57e4877b86804895949ac21c38c4f942" Name="Diagram1">
-        <EntityTypeShape EntityType="UberEatsDBModel.ClasificacionRestaurante" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+      <Diagram DiagramId="d3a5c5d07057490fb0bf3a624fc6bae3" Name="Diagram1">
+        <EntityTypeShape EntityType="UberEatsDBModel.ClasificacionRestaurante" Width="1.5" PointX="10.5" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="UberEatsDBModel.Direccion" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.LineaDetalle" Width="1.5" PointX="12.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.OrdenCompra" Width="1.5" PointX="8.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.LineaDetalle" Width="1.5" PointX="15.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.OrdenCompra" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="UberEatsDBModel.Pago" Width="1.5" PointX="10.5" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.Perfil" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.Producto" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.Restaurante" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Perfil" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Producto" Width="1.5" PointX="13.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Restaurante" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="UberEatsDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.Tarjeta" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.TipoMoneda" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.TipoProducto" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.TipoRestaurante" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.TipoTarjeta" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="UberEatsDBModel.Usuario" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Tarjeta" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.TipoMoneda" Width="1.5" PointX="8.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.TipoProducto" Width="1.5" PointX="11.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.TipoRestaurante" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.TipoTarjeta" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UberEatsDBModel.Usuario" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <AssociationConnector Association="UberEatsDBModel.FK_ClasificacionRestaurante_Restaurante" ManuallyRouted="false" />
         <AssociationConnector Association="UberEatsDBModel.FK_Direccion_Direccion" ManuallyRouted="false" />
         <AssociationConnector Association="UberEatsDBModel.FK_LineaDetalle_OrdenCompra" ManuallyRouted="false" />

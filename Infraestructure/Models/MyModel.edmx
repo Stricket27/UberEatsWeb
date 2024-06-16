@@ -17,12 +17,13 @@
           <Key>
             <PropertyRef Name="ID_Direccion" />
           </Key>
-          <Property Name="ID_Direccion" Type="int" Nullable="false" />
+          <Property Name="ID_Direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Provincia" Type="varchar" MaxLength="50" />
           <Property Name="Canton" Type="varchar" MaxLength="50" />
           <Property Name="Distrito" Type="varchar" MaxLength="50" />
           <Property Name="CodigoPostal" Type="varchar" MaxLength="50" />
-          <Property Name="DireccionExacta" Type="varchar" MaxLength="150" />
+          <Property Name="DireccionExacta" Type="varbinary" MaxLength="150" />
+          <Property Name="EstadoActual" Type="varchar" MaxLength="50" />
           <Property Name="ID_Usuario" Type="int" />
         </EntityType>
         <EntityType Name="LineaDetalle">
@@ -431,12 +432,13 @@
           <Key>
             <PropertyRef Name="ID_Direccion" />
           </Key>
-          <Property Name="ID_Direccion" Type="Int32" Nullable="false" />
+          <Property Name="ID_Direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Canton" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Distrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CodigoPostal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DireccionExacta" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DireccionExacta" Type="Binary" MaxLength="150" FixedLength="false" />
+          <Property Name="EstadoActual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_Usuario" Type="Int32" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Direccion_Direccion" FromRole="Direccion" ToRole="Usuario" />
         </EntityType>
@@ -880,6 +882,7 @@
                 <ScalarProperty Name="Distrito" ColumnName="Distrito" />
                 <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
                 <ScalarProperty Name="DireccionExacta" ColumnName="DireccionExacta" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
                 <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -2,6 +2,8 @@
 
 <h1 style="text-align: center">Mi productos</h1>
 
+
+
 @if (TempData["NotificationMessage"] != null)
 {
     <script src="~/Scripts/jquery-3.7.1.js"></script>
@@ -71,7 +73,7 @@
 
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Precio)
+                        ₡ @Html.DisplayFor(modelItem => item.Precio)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.TipoProducto.TipoProducto1)
