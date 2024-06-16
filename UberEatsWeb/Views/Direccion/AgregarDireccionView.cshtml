@@ -1,0 +1,58 @@
+﻿@model Infraestructure.Models.Direccion
+
+@{
+    ViewBag.Title = "AgregarDireccionView";
+
+    int IDUsuario = 0;
+    if (Session["Usuario"] != null)
+    {
+        Infraestructure.Models.Usuario usuario = new Infraestructure.Models.Usuario();
+        usuario = (Infraestructure.Models.Usuario)Session["Usuario"];
+        IDUsuario = usuario.ID_Usuario;
+    }
+}
+
+<link href="~/Content/Estilos/Agregar-Editar.css" rel="stylesheet" />
+
+<h1 style="text-align: center">Agregar nueva dirección</h1>
+
+@using (Html.BeginForm("AgregarDireccion", "Dirección", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <main class="form-signin w-100 m-auto">
+        <form>
+            <div class="col-md-10" hidden>
+                @Html.EditorFor(model => model.ID_Usuario, new { htmlAttributes = new { @Value = IDUsuario } })
+            </div>
+
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.Provincia, new { htmlAttributes = new { @class = "form-control", @id = "provinciaInput", @placeholder = "name@example.com" } })
+                <label for="provinciaInput">Provincia</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.Canton, new { htmlAttributes = new { @class = "form-control", @id = "cantonInput", @placeholder = "name@example.com" } })
+                <label for="cantonInput">Canton</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.Distrito, new { htmlAttributes = new { @class = "form-control", @id = "distritoInput", @placeholder = "name@example.com" } })
+                <label for="distritoInput">Distrito</label>
+            </div>
+            <div class="form-floating mb-3">
+                @Html.EditorFor(model => model.CodigoPostal, new { htmlAttributes = new { @class = "form-control", @id = "codigoPostalInput", @placeholder = "name@example.com" } })
+                <label for="codigoPostalInput">CodigoPostal</label>
+            </div>
+
+            <div class="mb-3">
+                <label for="direccionExactalInput">Dirección exacta</label>
+                @Html.TextAreaFor(model => model.DireccionExacta, new { htmlAttributes = new { @class = "form-control", @id = "direccionExactalInput", @rows = "3", @placeholder = "Dirección exacta" } })
+
+            </div>
+
+            <button class="btn btn-primary w-100 py-2" type="submit">Crear dirección</button>
+
+        </form>
+    </main> 
+}

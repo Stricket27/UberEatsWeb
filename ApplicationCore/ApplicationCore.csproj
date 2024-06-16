@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicesInterface\IServiceDireccion.cs" />
     <Compile Include="ServicesInterface\IServiceProducto.cs" />
     <Compile Include="ServicesInterface\IServiceRestaurante.cs" />
     <Compile Include="ServicesInterface\IServiceTarjeta.cs" />
     <Compile Include="ServicesInterface\IServiceUsuario.cs" />
+    <Compile Include="Services\ServiceDireccion.cs" />
     <Compile Include="Services\ServiceProducto.cs" />
     <Compile Include="Services\ServiceRestaurante.cs" />
     <Compile Include="Services\ServiceTarjeta.cs" />
