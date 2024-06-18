@@ -16,7 +16,7 @@
 
 <h1 style="text-align: center">Agregar nueva dirección</h1>
 
-@using (Html.BeginForm("AgregarDireccion", "Dirección", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("AgregarDireccion", "Direccion", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -48,7 +48,6 @@
             <div class="mb-3">
                 <label for="direccionExactalInput">Dirección exacta</label>
                 @Html.TextAreaFor(model => model.DireccionExacta, new { htmlAttributes = new { @class = "form-control", @id = "direccionExactalInput", @rows = "3", @placeholder = "Dirección exacta" } })
-
             </div>
 
             <button class="btn btn-primary w-100 py-2" type="submit">Crear dirección</button>

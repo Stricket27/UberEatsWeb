@@ -19,7 +19,7 @@ namespace Infraestructure.Models
         public string Canton { get; set; }
         public string Distrito { get; set; }
         public string CodigoPostal { get; set; }
-        public byte[] DireccionExacta { get; set; }
+        public string DireccionExacta { get; set; }
         public string EstadoActual { get; set; }
         public Nullable<int> ID_Usuario { get; set; }
     
