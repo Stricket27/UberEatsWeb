@@ -1,0 +1,11 @@
+**Administrador**
+Corrreo electrónico: admin
+Contraseña: admin
+
+**Gerente**
+Correo electrónico: gerente1@gmail.com
+Contraseña: gerente1
+
+**Cliente**
+Correo electrónico: cliente1@gmail.com
+Contraseña: cliente1
