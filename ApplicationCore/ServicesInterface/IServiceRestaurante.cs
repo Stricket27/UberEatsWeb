@@ -1,4 +1,5 @@
 ﻿using Infraestructure.Models;
+using Infraestructure.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,6 @@ namespace ApplicationCore.ServicesInterface
         void CambiarEstado(int id);
         List<TipoRestaurante> TipoRestaurantes();
         Usuario ObtenerUsuarioPorID(int id);
+        TipoRestaurante ObtenerTipoRestaurantePorID(int id);
     }
 }

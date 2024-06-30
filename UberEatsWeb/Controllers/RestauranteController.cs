@@ -1,6 +1,7 @@
 ﻿using ApplicationCore.Services;
 using ApplicationCore.ServicesInterface;
 using Infraestructure.Models;
+using Infraestructure.Models.ViewModel;
 using Infraestructure.Utils;
 using System;
 using System.Collections.Generic;
@@ -183,7 +184,6 @@ namespace UberEatsWeb.Controllers
             try
             {
                 Restaurante restaurante = null;
-
                 restaurante = serviceRestaurante.ObtenerRestaurantePorID(Convert.ToInt32(id));
 
                 return View(restaurante);

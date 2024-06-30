@@ -1,4 +1,5 @@
 ﻿using Infraestructure.Models;
+using Infraestructure.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Infraestructure.RepositoryInterface
         Restaurante EditarRestaurante(Restaurante restaurante);
         void CambiarEstado(int id);
         List<TipoRestaurante> TipoRestaurantes();
+        TipoRestaurante ObtenerTipoRestaurantePorID(int id);
         
     }
 }

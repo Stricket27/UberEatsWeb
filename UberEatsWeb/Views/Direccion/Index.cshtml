@@ -50,69 +50,9 @@
                             <a href="@Url.Action("CambiarEstado", "Direccion", new {id = item.ID_Direccion})" class="btn"><i class="fa-solid fa-location-dot" style="color: red"></i> Inactivo</a>
                         }
                     </p>
-
-
                     <a href="@Url.Action("EditarDireccionView", "Direccion", new { id = item.ID_Direccion })" class="btn"><i class="fa-solid fa-pen-to-square" style="color: orange"></i> Editar</a>
                 </div>
             </div>
         </div>
     }
 </div>
-
-@*<div class="container-fluid row">
-        <div id="detalleseleccion" name="detalleseleccion" class="este">
-            <table class="table table-striped text-center">
-                <tr>
-                    <th>
-                        Dirección
-                    </th>
-                    <th>
-                        Dirección exacta
-                    </th>
-                    <th>
-                        Código postal
-                    </th>
-                    <th>
-                        Estado actual
-                    </th>
-                    <th>
-                        Acciones
-                    </th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td colspan="1">
-                            @Html.DisplayFor(modelItem => item.Provincia),  @Html.DisplayFor(modelItem => item.Canton), @Html.DisplayFor(modelItem => item.Distrito)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DireccionExacta)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CodigoPostal)
-                        </td>
-
-                        @if (item.EstadoActual == "Activo")
-                        {
-                            <td>
-                                <a href="@Url.Action("CambiarEstado", "Direccion", new {id = item.ID_Direccion})" class="btn"><i class="fa-solid fa-location-dot" style="color: green"></i></a>
-                            </td>
-
-                        }
-                        else
-                        {
-                            <td>
-                                <a href="@Url.Action("CambiarEstado", "Direccion", new {id = item.ID_Direccion})" class="btn"><i class="fa-solid fa-location-dot" style="color: red"></i></a>
-                            </td>
-
-                        }
-                        <td>
-                            <a href="@Url.Action("EditarDireccionView", "Direccion", new {id = item.ID_Direccion})" class="btn"><i class="fa-solid fa-pen-to-square" style="color: orange"></i></a>
-                        </td>
-                    </tr>
-                }
-
-            </table>
-        </div>
-    </div>*@

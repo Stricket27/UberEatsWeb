@@ -1,5 +1,6 @@
 ﻿using ApplicationCore.ServicesInterface;
 using Infraestructure.Models;
+using Infraestructure.Models.ViewModel;
 using Infraestructure.Repository;
 using Infraestructure.RepositoryInterface;
 using System;
@@ -38,6 +39,11 @@ namespace ApplicationCore.Services
             return repository.ObtenerRestaurantePorID(id);
         }
 
+        public TipoRestaurante ObtenerTipoRestaurantePorID(int id)
+        {
+            return repository.ObtenerTipoRestaurantePorID(id);
+        }
+
         public Usuario ObtenerUsuarioPorID(int id)
         {
             return repository.ObtenerUsuarioPorID(id);
@@ -47,5 +53,6 @@ namespace ApplicationCore.Services
         {
             return repository.TipoRestaurantes();
         }
+
     }
 }

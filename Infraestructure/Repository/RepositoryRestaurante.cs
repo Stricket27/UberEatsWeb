@@ -1,8 +1,10 @@
 ﻿using Infraestructure.Models;
+using Infraestructure.Models.ViewModel;
 using Infraestructure.RepositoryInterface;
 using Infraestructure.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ namespace Infraestructure.Repository
 {
     public class RepositoryRestaurante : IRepositoryRestaurante
     {
+
         public IEnumerable<Restaurante> ListaRestaurantes()
         {
             try
@@ -199,6 +202,32 @@ namespace Infraestructure.Repository
                     usuario = context.Usuario.Find(id);
                 }
                 return usuario;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
+        public TipoRestaurante ObtenerTipoRestaurantePorID(int id)
+        {
+            try
+            {
+                TipoRestaurante tipoRestaurante = null;
+                using (MyContext context = new MyContext())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    tipoRestaurante = context.TipoRestaurante.Find(id);
+                }
+                return tipoRestaurante;
             }
             catch (DbUpdateException dbEx)
             {

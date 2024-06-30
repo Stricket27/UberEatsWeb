@@ -243,6 +243,7 @@
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\ViewModelRestaurante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryInterface\IReporsitoryDireccion.cs" />
     <Compile Include="RepositoryInterface\IRepositoryProducto.cs" />
