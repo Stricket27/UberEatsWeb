@@ -48,21 +48,19 @@
         </ul>
     </div>
     @*En caso que un usuario no a ingresado a su cuenta*@
-    @if (Session["Usuario"] == null || Session["Usuario"] != null)
+    @if (Session["Usuario"] == null)
     {
         Layout = ("~/Views/Shared/_LayoutCliente.cshtml");
     }
-    
-    
-    @*@if(Session["Usuario"] != null && Convert.ToInt32(Session["Rol"]) == 2)
+    else if (Session["Usuario"] != null && Convert.ToInt32(Session["Rol"]) == 2)
     {
         Layout = ("~/Views/Shared/_LayoutCliente.cshtml");
-    }*@
+    }
     @*En caso que el usuario que ingreso es un administrador*@
-    @*else
-        {
-            Layout = ("~/Views/Shared/_LayoutAdminGerente.cshtml");
-        }*@
+    else
+    {
+        Layout = ("~/Views/Shared/_LayoutAdminGerente.cshtml");
+    }
 
     <div class="container body-content">
         @RenderBody()
