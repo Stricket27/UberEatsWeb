@@ -114,9 +114,10 @@ namespace Infraestructure.Repository
 
         public Usuario IniciarSesion(string correoElectronico, string contrasenna)
         {
-            Usuario usuario = null;
+            
             try
             {
+                Usuario usuario = null;
                 using (MyContext context = new MyContext())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
@@ -125,10 +126,7 @@ namespace Infraestructure.Repository
                         .FirstOrDefault<Usuario>();
                 }
                 if (usuario != null)
-                {
                     usuario = ObtenerUsuarioPorID(usuario.ID_Usuario);
-
-                }
                 return usuario;
             }
             catch (DbUpdateException dbEx)

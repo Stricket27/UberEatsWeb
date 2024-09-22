@@ -10,6 +10,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    @*Botón de claridad y ocuridad*@
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
         <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
                 id="bd-theme"
@@ -47,21 +48,25 @@
             </li>
         </ul>
     </div>
+
+    @*Estilo del navbar*@
     @*En caso que un usuario no a ingresado a su cuenta*@
     @if (Session["Usuario"] == null)
     {
         Layout = ("~/Views/Shared/_LayoutCliente.cshtml");
     }
-    else if (Session["Usuario"] != null && Convert.ToInt32(Session["Rol"]) == 2)
+    @*En caso que el usuario que ingreso es un cliente*@
+    else if (Session["Usuario"] != null && Convert.ToInt32(Session["Perfil"]) == 3)
     {
         Layout = ("~/Views/Shared/_LayoutCliente.cshtml");
     }
-    @*En caso que el usuario que ingreso es un administrador*@
+    @*En caso que el usuario que ingreso es un administrador o gerente*@
     else
     {
         Layout = ("~/Views/Shared/_LayoutAdminGerente.cshtml");
     }
 
+    @* Footer que muestra la fecha actual *@
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -70,6 +75,7 @@
         </footer>
     </div>
 
+    @* Archivos Scripts necesarios *@
     @Scripts.Render("~/bundles/jquery")
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     @Scripts.Render("~/bundles/sweetalert")
@@ -85,13 +91,8 @@
 </body>
 </html>
 
+@* Script de la funcionalidad del botón claridad y oscuridad *@
 <script type="text/javascript">
-    /*!
- * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
- * Copyright 2011-2024 The Bootstrap Authors
- * Licensed under the Creative Commons Attribution 3.0 Unported License.
- */
-
     (() => {
         'use strict'
 

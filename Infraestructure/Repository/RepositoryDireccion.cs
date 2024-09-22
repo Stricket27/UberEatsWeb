@@ -1,10 +1,12 @@
 ﻿using Infraestructure.Models;
 using Infraestructure.RepositoryInterface;
 using Infraestructure.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +14,9 @@ namespace Infraestructure.Repository
 {
     public class RepositoryDireccion : IReporsitoryDireccion
     {
-        public void AgregarDireccion(Direccion direccion)
+
+
+    public void AgregarDireccion(Direccion direccion)
         {
             try
             {
@@ -192,5 +196,7 @@ namespace Infraestructure.Repository
                 throw;
             }
         }
+
+
     }
 }

@@ -15,6 +15,5 @@ namespace Infraestructure.RepositoryInterface
         void AgregarDireccion(Direccion direccion);
         Direccion EditarDireccion(Direccion direccion);
         void CambiarEstado(int id);
-        
     }
 }

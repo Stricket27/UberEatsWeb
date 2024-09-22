@@ -1,12 +1,14 @@
 ﻿using ApplicationCore.Services;
 using ApplicationCore.ServicesInterface;
 using Infraestructure.Models;
+using Infraestructure.Repository;
 using Infraestructure.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 

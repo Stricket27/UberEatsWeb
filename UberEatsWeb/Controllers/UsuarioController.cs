@@ -240,7 +240,7 @@ namespace UberEatsWeb.Controllers
                     if (usuario != null)
                     {
                         Session["Usuario"] = usuario;
-                        Session["Rol"] = usuario.Perfil;
+                        Session["Perfil"] = usuario.ID_Perfil;
                         Log.Info($"Inicio sesion: {pUsuario.CorreoElectronico}");
                         TempData["mensaje"] = Util.SweetAlertHelper.Mensaje("Bienvenido",
                             usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido,
